@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Hero } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -16,6 +16,14 @@ const resolvers = {
         }
         throw new AuthenticationError('You need to be logged in!');
       },
+      heroes: async () => {
+        return Hero.find();
+      },
+      hero: async (parent, {id}) => {
+        return Hero.findOne({
+            id
+        })
+      }
     },
 
     Mutation: {

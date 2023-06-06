@@ -27,17 +27,19 @@ function Signup(props) {
     });
   };
   return (
-    <div className="container">
-      <Link to="/login" className="text-blue-500">
-        ← Go to Login
-      </Link>
+    <div className="container mx-auto">
+      <div className="flex justify-end my-4">
+        <Link to="/login" className="text-blue-500">
+          ← Go to Login
+        </Link>
+      </div>
 
-      <div className="container flex justify-center items-center h-screen">
-        <div className="my-4">
-          <h2 className="text-2xl font-bold">Signup</h2>
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-full max-w-md  border border-gray-300 rounded-lg shadow-lg p-8">
+          <h2 className="text-3xl font-bold mb-4 text-center">Signup</h2>
           <form onSubmit={handleFormSubmit}>
-            <div className="flex flex-col space-y-2 my-2">
-              <label htmlFor="username" className="font-semibold">
+            <div className="mb-4">
+              <label htmlFor="username" className="block font-semibold mb-2">
                 Username:
               </label>
               <input
@@ -45,13 +47,13 @@ function Signup(props) {
                 name="username"
                 type="text"
                 id="username"
-                className="border border-gray-300 px-3 py-2 rounded"
+                className="border border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
             </div>
 
-            <div className="flex flex-col space-y-2 my-2">
-              <label htmlFor="email" className="font-semibold">
+            <div className="mb-4">
+              <label htmlFor="email" className="block font-semibold mb-2">
                 Email:
               </label>
               <input
@@ -59,12 +61,13 @@ function Signup(props) {
                 name="email"
                 type="email"
                 id="email"
-                className="border border-gray-300 px-3 py-2 rounded"
+                className="border border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
             </div>
-            <div className="flex flex-col space-y-2 my-2">
-              <label htmlFor="pwd" className="font-semibold">
+
+            <div className="mb-6">
+              <label htmlFor="pwd" className="block font-semibold mb-2">
                 Password:
               </label>
               <input
@@ -72,14 +75,15 @@ function Signup(props) {
                 name="password"
                 type="password"
                 id="pwd"
-                className="border border-gray-300 px-3 py-2 rounded"
+                className="border border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
             </div>
+
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded"
+                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
               >
                 Submit
               </button>

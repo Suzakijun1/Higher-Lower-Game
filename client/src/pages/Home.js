@@ -2,6 +2,8 @@ import React from "react";
 import GameModesComponent from "../components/game-mode";
 import NavBar from "../components/navbar";
 
+
+
 export default function Home() {
   return (
     <div>

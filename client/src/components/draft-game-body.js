@@ -1,19 +1,54 @@
 import { useQuery } from "@apollo/client";
-import React from "react";
+import {useEffect} from "react";
 import { HERO_IMG } from "../utils/queries";
 
-const DraftBody = ({heroOneId, heroTwoId}) => {
+const DraftBody = (props) => {
 
-  const imageOneResults = useQuery(HERO_IMG, {
+  const heroOneResults = useQuery(HERO_IMG, {
     variables : {
-        heroId : heroOneId + ""
+        heroId : props.heroOneId + ""
   }
   })
-  const imageTwoResults = useQuery(HERO_IMG, {
+  const heroTwoResults = useQuery(HERO_IMG, {
       variables : {
-          heroId : heroTwoId + ""
+        heroId : props.heroTwoId + ""
     }
   })
+
+  useEffect(()=> {
+    console.log(props.teamOne)
+    console.log(props.teamTwo)
+
+    //Get new hero one id
+    let newHeroOneId = props.unseenIds[Math.floor(Math.random() * props.unseenIds.length)]
+    
+    //Set the aforementioned value to heroTwoId
+    props.setHeroOneId(newHeroOneId)
+
+    let newIds = props.unseenIds.filter(id => id !== newHeroOneId);
+    props.setUnseenIds(newIds)
+    //Get new hero one id
+    let newHeroTwoId = props.unseenIds[Math.floor(Math.random() * props.unseenIds.length)]
+    
+    //Set the aforementioned value to heroTwoId
+    props.setHeroTwoId(newHeroTwoId)
+
+    newIds = props.unseenIds.filter(id => id !== newHeroTwoId);
+    props.setUnseenIds(newIds)
+
+  }, [props.teamOne])
+
+
+  const onSelectHero = (heroResult, leftoverResult) => {
+    //Adds to your team the hero you chose
+    props.setTeamOne((prevTeamOne) => {
+      return [...prevTeamOne, heroResult]
+    })
+    //Adds to team two the hero you did not choose
+    props.setTeamTwo((prevTeamTwo) => {
+      return [...prevTeamTwo, leftoverResult]
+    })
+  }
 
   return (
     <div className="flex flex-col items-center mt-10 h-screen">
@@ -22,9 +57,9 @@ const DraftBody = ({heroOneId, heroTwoId}) => {
 
       <div className="flex gap-6 mt-4">
         {/* Left Superhero/Villain Card - Will hold image*/}
-        {imageOneResults.loading ? 'Loading' : <img className="w-40 h-40 rounded" src={imageOneResults.data.hero.image.url}></img>}
+        {heroOneResults.loading ? 'Loading' : <div><h3>{heroOneResults.data.hero.name}</h3><img onClick={()=>onSelectHero(heroOneResults, heroTwoResults)} className="w-40 h-40 rounded" src={heroOneResults.data.hero.image.url}></img></div>}
         {/* Right Superhero/Villain Card - Will hold image */}
-        {imageTwoResults.loading ? 'Loading' : <img className="w-40 h-40 rounded" src={imageTwoResults.data.hero.image.url}></img>}
+        {heroTwoResults.loading ? 'Loading' : <div><h3>{heroTwoResults.data.hero.name}</h3><img onClick={()=>onSelectHero(heroTwoResults, heroOneResults)} className="w-40 h-40 rounded" src={heroTwoResults.data.hero.image.url}></img></div>}
       </div>
       <div className="flex gap-6">
         {/* Left Column - Player */}

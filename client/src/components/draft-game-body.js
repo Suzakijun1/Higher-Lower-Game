@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React from "react";
+import {useEffect} from "react";
 import { HERO_IMG } from "../utils/queries";
 
 const DraftBody = (props) => {
@@ -15,6 +15,15 @@ const DraftBody = (props) => {
     }
   })
 
+  useEffect(()=> {
+    console.log(props.teamOne)
+    console.log(props.teamTwo)
+
+    props.setHeroOneId(Math.floor(Math.random() * 730 + 1))
+    props.setHeroTwoId(Math.floor(Math.random() * 730 + 1))
+  }, [props.teamOne])
+
+
   const onSelectHero = (heroResult, leftoverResult) => {
     //Adds to your team the hero you chose
     props.setTeamOne((prevTeamOne) => {
@@ -24,6 +33,8 @@ const DraftBody = (props) => {
     props.setTeamTwo((prevTeamTwo) => {
       return [...prevTeamTwo, leftoverResult]
     })
+
+    
   }
 
   return (

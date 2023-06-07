@@ -1,6 +1,20 @@
+import { useQuery } from "@apollo/client";
 import React from "react";
+import { HERO_IMG } from "../utils/queries";
 
-const DraftBody = () => {
+const DraftBody = ({heroOneId, heroTwoId}) => {
+
+  const imageOneResults = useQuery(HERO_IMG, {
+    variables : {
+        heroId : heroOneId + ""
+  }
+  })
+  const imageTwoResults = useQuery(HERO_IMG, {
+      variables : {
+          heroId : heroTwoId + ""
+    }
+  })
+
   return (
     <div className="flex flex-col items-center mt-10 h-screen">
       {/* HEADING */}
@@ -8,10 +22,9 @@ const DraftBody = () => {
 
       <div className="flex gap-6 mt-4">
         {/* Left Superhero/Villain Card - Will hold image*/}
-        <div className="w-40 h-40 bg-gray-200 rounded"></div>
-
+        {imageOneResults.loading ? 'Loading' : <img className="w-40 h-40 rounded" src={imageOneResults.data.hero.image.url}></img>}
         {/* Right Superhero/Villain Card - Will hold image */}
-        <div className="w-40 h-40 bg-gray-200 rounded"></div>
+        {imageTwoResults.loading ? 'Loading' : <img className="w-40 h-40 rounded" src={imageTwoResults.data.hero.image.url}></img>}
       </div>
       <div className="flex gap-6">
         {/* Left Column - Player */}

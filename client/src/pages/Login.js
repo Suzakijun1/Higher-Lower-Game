@@ -5,17 +5,18 @@ import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 function Login() {
-  const [formState, setFormState] = useState({ email: "", password: "" });
-  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
+  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await loginUser({
+      const { data } = await login({
         variables: { ...formState },
       });
-      Auth.login(data.loginUser.token);
+      console.log(data)
+      Auth.login(data.login.token);
     } catch (e) {
       console.error("ERROR:", e);
     }
@@ -42,14 +43,14 @@ function Login() {
           <h2 className="text-3xl font-bold mb-4 text-center">Login</h2>
           <form onSubmit={handleFormSubmit}>
             <div className="mb-4">
-              <label htmlFor="email" className="block font-semibold mb-2">
-                Email:
+              <label htmlFor="username" className="block font-semibold mb-2">
+                Username:
               </label>
               <input
-                placeholder="youremail@test.com"
-                name="email"
-                type="email"
-                id="email"
+                placeholder="Username"
+                name="username"
+                type="username"
+                id="username"
                 className="border border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />

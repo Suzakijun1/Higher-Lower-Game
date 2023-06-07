@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Navbar from "./components/navbar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
+import DraftGame from "./pages/DraftGame";
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
@@ -34,6 +36,8 @@ function App() {
         <div>
           <Navbar />
           <Routes>
+            <Route path="/" element={ <Home /> } />
+            <Route path="/draftgame" element={ <DraftGame /> } />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
           </Routes>

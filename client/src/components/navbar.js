@@ -23,8 +23,7 @@ function classNames(...classes) {
 }
 
 
-export default function NavBar() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function NavBar({isModalOpen, setIsModalOpen}) {
 
   const toggleModal = () => {
     setIsModalOpen((PrevIsModalOpen)=>!PrevIsModalOpen);
@@ -116,7 +115,8 @@ export default function NavBar() {
                         {({ active }) => (
                           <a
                             data-modal-target="defaultModal"
-                            //  className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            data-modal-toggle="defaultModal"
+                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                             onClick={toggleModal}
                           >
                             Your Profile
@@ -172,8 +172,9 @@ export default function NavBar() {
 
           
 
-          <Modal
+          {isModalOpen ? <Modal
             isOpen={isModalOpen}
+            isModalOpen={isModalOpen}
             onClose={toggleModal}
             wins={wins}
             losses={losses}
@@ -181,7 +182,7 @@ export default function NavBar() {
             avgStreak={avgStreak}
             mostPlayed={mostPlayed}
             favoriteHero={favoriteHero}
-          />
+          /> : ''}
         </>
       )}
     </Disclosure>

@@ -1,20 +1,16 @@
 import React from 'react';
 
-const Modal = ({toggleModal, isOpen, onClose, wins, losses, totalGames,highestStreak, avgStreak, mostPlayed, favoriteHero, }) => {
-  const closeModal = () => {
-    onClose();
-  };
-  if (!isOpen) return null;
+const Modal = ({ isOpen, onClose, wins, losses, totalGames,highestStreak, avgStreak, mostPlayed, favoriteHero, }) => {
+  
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="fixed inset-0 bg-black opacity-50"></div>
+    <div id="defaultModal" className="fixed inset-0 flex items-center justify-center ">
       <div className="bg-white rounded-lg shadow-lg p-4">
         <div className="flex justify-end">
           <button
-          
-            className="z-100 text-gray-600 hover:text-gray-800"
-            onClick={toggleModal}
+            data-modal-hide="defaultModal"
+            className="text-gray-600 hover:text-gray-800"
+            onClick={onClose}
           >
             Close
           </button>

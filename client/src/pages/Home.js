@@ -3,6 +3,8 @@ import React from "react";
 import GameModesComponent from "../components/game-mode";
 import Footer from "../components/footer";
 
+
+
 export default function Home() {
   return (
     <div>

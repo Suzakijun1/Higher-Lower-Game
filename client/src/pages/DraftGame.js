@@ -1,6 +1,6 @@
 import React from "react";
 import DraftBody from "../components/draft-game-body";
-import NavBar from "../components/navbar";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
         Welcome to the Game!
       </h1>
       <DraftBody />
+      <Footer />
     </div>
   );
 }

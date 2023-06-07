@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+//:::::: Components :::::::::::::
 import Navbar from "./components/navbar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import DraftGame from "./pages/DraftGame";
+
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";

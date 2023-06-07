@@ -1,37 +1,19 @@
-import React, { useState, Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import Modal from "./modal";
-
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Modal from "./modal"
 const navigation = [
-  { name: 'Home', href: '/', current: true },
+  { name: 'Dashboard', href: '#', current: true },
   { name: 'Team', href: '#', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Calendar', href: '#', current: false },
-];
-
-// Sample data for the modal
-const wins = 10;
-const losses = 5;
-const highestStreak = 7;
-const avgStreak = 4;
-const mostPlayed = "Hero A";
-const favoriteHero = "Hero B";
+]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(' ')
 }
 
-
-export default function NavBar({isModalOpen, setIsModalOpen}) {
-
-  const toggleModal = () => {
-    setIsModalOpen((PrevIsModalOpen)=>!PrevIsModalOpen);
-  };
-  
- 
-
-
+export default function NavBar() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -114,10 +96,9 @@ export default function NavBar({isModalOpen, setIsModalOpen}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
+                            href=""
                             data-modal-target="defaultModal"
-                            data-modal-toggle="defaultModal"
-                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            onClick={toggleModal}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Your Profile
                           </a>
@@ -167,24 +148,10 @@ export default function NavBar({isModalOpen, setIsModalOpen}) {
                 </Disclosure.Button>
               ))}
             </div>
-            
           </Disclosure.Panel>
-
-          
-
-          {isModalOpen ? <Modal
-            isOpen={isModalOpen}
-            isModalOpen={isModalOpen}
-            onClose={toggleModal}
-            wins={wins}
-            losses={losses}
-            highestStreak={highestStreak}
-            avgStreak={avgStreak}
-            mostPlayed={mostPlayed}
-            favoriteHero={favoriteHero}
-          /> : ''}
         </>
       )}
     </Disclosure>
-  );
+  )
+
 }

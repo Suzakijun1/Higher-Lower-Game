@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 //:::::: Components :::::::::::::
 import Navbar from "./components/navbar";
 import Signup from "./pages/Signup";
@@ -32,18 +32,24 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={ <Home /> } />
-            <Route path="/draftgame" element={ <DraftGame /> } />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
-        </div>
+          <Navbar
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
+          <div className={`${isModalOpen ? "fixed inset-0 -z-30 bg-red-500 opacity-50" : ""}`}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/draftgame" element={<DraftGame />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+            </Routes>
+          </div>
       </Router>
     </ApolloProvider>
   );

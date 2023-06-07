@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Navbar from "./components/navbar";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
@@ -33,6 +34,7 @@ function App() {
         <div>
           <Navbar />
           <Routes>
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
           </Routes>
         </div>

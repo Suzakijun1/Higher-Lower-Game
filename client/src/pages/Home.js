@@ -1,6 +1,7 @@
 import React from "react";
+
 import GameModesComponent from "../components/game-mode";
-import NavBar from "../components/navbar";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
         Welcome to the Game!
       </h1>
       <GameModesComponent />
+      <Footer />
     </div>
   );
 };

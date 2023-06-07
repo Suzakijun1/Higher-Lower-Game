@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import { useQuery } from "@apollo/client";
 import DraftBody from "../components/draft-game-body";
+import Footer from "../components/footer";
 import NavBar from "../components/navbar";
 import {HERO_IMG} from "../utils/queries"
 
@@ -25,6 +26,7 @@ export default function Home() {
       heroOneId={heroOneId}
       heroTwoId={heroTwoId}
       />
+      <Footer />
     </div>
   );
 }

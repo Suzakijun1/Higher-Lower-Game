@@ -1,5 +1,5 @@
 import React from "react";
-import GameModesComponent from "../components/game-mode";
+import DraftBody from "../components/draft-game-body";
 import NavBar from "../components/navbar";
 
 export default function Home() {
@@ -8,8 +8,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold text-center mt-8">
         Welcome to the Game!
       </h1>
-      <GameModesComponent />
+      <DraftBody />
     </div>
   );
-};
-
+}

@@ -11,7 +11,7 @@ const DraftBody = (props) => {
   })
   const heroTwoResults = useQuery(HERO_IMG, {
       variables : {
-          heroId : props.heroTwoId + ""
+        heroId : props.heroTwoId + ""
     }
   })
 
@@ -19,8 +19,23 @@ const DraftBody = (props) => {
     console.log(props.teamOne)
     console.log(props.teamTwo)
 
-    props.setHeroOneId(Math.floor(Math.random() * 730 + 1))
-    props.setHeroTwoId(Math.floor(Math.random() * 730 + 1))
+    //Get new hero one id
+    let newHeroOneId = props.unseenIds[Math.floor(Math.random() * props.unseenIds.length)]
+    
+    //Set the aforementioned value to heroTwoId
+    props.setHeroOneId(newHeroOneId)
+
+    let newIds = props.unseenIds.filter(id => id !== newHeroOneId);
+    props.setUnseenIds(newIds)
+    //Get new hero one id
+    let newHeroTwoId = props.unseenIds[Math.floor(Math.random() * props.unseenIds.length)]
+    
+    //Set the aforementioned value to heroTwoId
+    props.setHeroTwoId(newHeroTwoId)
+
+    newIds = props.unseenIds.filter(id => id !== newHeroTwoId);
+    props.setUnseenIds(newIds)
+
   }, [props.teamOne])
 
 
@@ -33,8 +48,6 @@ const DraftBody = (props) => {
     props.setTeamTwo((prevTeamTwo) => {
       return [...prevTeamTwo, leftoverResult]
     })
-
-    
   }
 
   return (

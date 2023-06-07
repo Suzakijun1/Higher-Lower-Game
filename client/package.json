@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "1.0.0",
+  "proxy": "http://localhost:3001",
   "description": "client for higher lower game",
   "main": "index.js",
   "scripts": {

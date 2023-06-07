@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
+  // headers: { authorization: token }
 });
 
 const authLink = setContext((_, { headers }) => {

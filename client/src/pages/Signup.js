@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -10,14 +10,16 @@ function Signup(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    console.log('ERROR', error);
     try {
       const { data } = await addUser({
         variables: { ...formState },
       });
-
-      Auth.login(data.addUser.token);
+      console.log(data.addUser.user)
+      Auth.login(data.addUser);
     } catch (e) {
-      console.error(e);
+      console.error("ERROR:", e);
     }
 
   };

@@ -1,14 +1,22 @@
 [
     {
         "email": "Anthony@email.com",
+        "username": "Anthony",
         "password": "password123"
     },
     {
         "email": "email@email.com",
+        "username": "username",
         "password": "password1"
     },
     {
         "email": "testing123@email.com",
+        "username": "testing123",
         "password": "password12345"
+    },
+    {
+        "email": "testing1234@email.com",
+        "username": "testing1234",
+        "password": "password123451"
     }
 ]

@@ -2,21 +2,25 @@
     {
         "email": "Anthony@email.com",
         "username": "Anthony",
-        "password": "password123"
+        "password": "password123",
+        "higherLowerGameHighestScore" : 0
     },
     {
         "email": "email@email.com",
         "username": "username",
-        "password": "password1"
+        "password": "password1",
+        "higherLowerGameHighestScore" : 0
     },
     {
         "email": "testing123@email.com",
         "username": "testing123",
-        "password": "password12345"
+        "password": "password12345",
+        "higherLowerGameHighestScore" : 0
     },
     {
         "email": "testing1234@email.com",
         "username": "testing1234",
-        "password": "password123451"
+        "password": "password123451",
+        "higherLowerGameHighestScore" : 0
     }
 ]

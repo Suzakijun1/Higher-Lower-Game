@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import HigherLowerBody from "../components/HigherLowerBody";
 import { useQuery, useMutation } from "@apollo/client";
-import { HERO_IMG } from "../utils/queries";
-import { UPDATE_HIGH_SCORE } from "../utils/mutations";
+import { HERO_IMG, USER_HIGHSCORE} from "../utils/queries";
+import { UPDATE_HIGH_SCORE} from "../utils/mutations";
 
 export default function HigherLower() {
   const [heroOneId, setHeroOneId] = useState(null);
@@ -13,6 +13,11 @@ export default function HigherLower() {
   const [powerStat, setPowerStat] = useState("");
   const [winStreak, setWinStreak] = useState(0);
 
+  const userHighScoreResult = useQuery(USER_HIGHSCORE, {
+    variables : {
+      username : "testing1234"
+    }
+  });
   const [updateHighScore] = useMutation(UPDATE_HIGH_SCORE);
 
   const heroOneResults = useQuery(HERO_IMG, {
@@ -48,6 +53,8 @@ export default function HigherLower() {
 
       //Filter the new id out of the unseenIds
       ids = ids.filter((id) => id !== randomHeroTwoId);
+
+      console.log()
 
       //Set the new unseenIds array
       setUnseenIds(ids);
@@ -116,6 +123,7 @@ export default function HigherLower() {
 
   return (
     <div className="container mx-auto px-4">
+      {userHighScoreResult.loading ? <div>Loading</div> : <div>{userHighScoreResult.data?.user?.higherLowerGameHighestScore}</div>}
       <h1 className="text-3xl font-bold text-center mt-8">
         Welcome to the Higher Lower Game!
       </h1>

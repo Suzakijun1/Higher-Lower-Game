@@ -19,3 +19,11 @@ export const HERO_IMG = gql`
     }
   }
 `;
+
+export const USER_HIGHSCORE = gql`
+query User($username: String!) {
+  user(username: $username) {
+    higherLowerGameHighestScore
+  }
+}
+`

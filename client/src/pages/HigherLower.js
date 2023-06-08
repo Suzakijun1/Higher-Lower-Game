@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import HigherLowerBody from "../components/HigherLowerBody";
 import { useQuery, useMutation } from "@apollo/client";
-import { HERO_IMG, USER_HIGHSCORE} from "../utils/queries";
-import { UPDATE_HIGH_SCORE} from "../utils/mutations";
+import { HERO_IMG, USER_HIGHSCORE } from "../utils/queries";
+import { UPDATE_HIGH_SCORE } from "../utils/mutations";
 
 export default function HigherLower() {
   const [heroOneId, setHeroOneId] = useState(null);
@@ -14,9 +15,9 @@ export default function HigherLower() {
   const [winStreak, setWinStreak] = useState(0);
 
   const userHighScoreResult = useQuery(USER_HIGHSCORE, {
-    variables : {
-      username : "testing1234"
-    }
+    variables: {
+      username: "testing1234",
+    },
   });
   const [updateHighScore] = useMutation(UPDATE_HIGH_SCORE);
 
@@ -54,7 +55,7 @@ export default function HigherLower() {
       //Filter the new id out of the unseenIds
       ids = ids.filter((id) => id !== randomHeroTwoId);
 
-      console.log()
+      console.log();
 
       //Set the new unseenIds array
       setUnseenIds(ids);
@@ -121,16 +122,39 @@ export default function HigherLower() {
     return powerStats[randomIndex];
   };
 
+  const handleTryAgain = () => {
+    setGameOver(false);
+    setScore(0);
+  };
+
   return (
     <div className="container mx-auto px-4">
-      {userHighScoreResult.loading ? <div>Loading</div> : <div>{userHighScoreResult.data?.user?.higherLowerGameHighestScore}</div>}
+      {userHighScoreResult.loading ? (
+        <div>Loading</div>
+      ) : (
+        <div>{userHighScoreResult.data?.user?.higherLowerGameHighestScore}</div>
+      )}
       <h1 className="text-3xl font-bold text-center mt-8">
         Welcome to the Higher Lower Game!
       </h1>
       {gameOver ? (
-        <div className="mt-8">
+        <div className="mt-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Game Over!</h2>
           <p className="text-xl">Your score: {score}</p>
+          <div className="justify-center mt-4 space-x-4">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded"
+              onClick={handleTryAgain}
+            >
+              Try Again
+            </button>
+            <Link
+              to="/"
+              className="px-4 py-2 bg-gray-500 font-bold text-white rounded"
+            >
+              Go Back to Main Menu
+            </Link>
+          </div>
         </div>
       ) : (
         <HigherLowerBody

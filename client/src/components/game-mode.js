@@ -13,9 +13,13 @@ const GameModesComponent = () => {
           >
             Draft
           </Link>
-          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+
+          <Link
+            to="/higherlower"
+            className="bg-green-500 hover:bg-green-700 text-center text-white font-bold py-2 px-4 rounded"
+          >
             Higher/Lower
-          </button>
+          </Link>
         </div>
       </div>
     </div>

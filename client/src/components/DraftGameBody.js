@@ -78,6 +78,7 @@ const DraftBody = (props) => {
     }
     return total + Number(str);
   }
+  
   function getSpd(total, heroResult) {
     let spd = heroResult.data.hero.powerstats.speed;
     if (spd === "null") {

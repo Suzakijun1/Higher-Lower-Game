@@ -3,6 +3,8 @@ const { User, Hero } = require("../models");
 const heroSeeds = require("./heroData.json");
 const userSeeds = require("./userData.json");
 
+
+
 db.once("open", async () => {
   try {
     await Hero.deleteMany({});

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
-    const [pOneHealth, setPOneHealth] = useState(0);
-    const [pTwoHealth, setPTwoHealth] = useState(0);
+    //Player One Object State
     const [playerOne, setPlayerOne] = useState({
         name: "Player 1",
         health: 0,
@@ -15,6 +14,8 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
             });
         }
     })
+
+    //Player Two Object State
     const [playerTwo, setPlayerTwo] = useState({
         name: "Player 2",
         health: 0,
@@ -27,7 +28,11 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
             });
         }
     })
-    const [playerTurn, setPlayerTurn] = useState(false)
+    //This indicates whose turn to attack is
+    const [playerTurn, setPlayerTurn] = useState(false);
+    //
+
+    //Current Prompt Indicates the action that want to be taken once we decide on the heroes
     const [currentPrompt, setCurrentPrompt] = useState({
         generatePrompt: (heroName) => {
             return ("No Prompt")
@@ -37,6 +42,7 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
         },
         type: ""
     });
+
     const [currentEnemyHero, setCurrentEnemyHero] = useState({
         data: {
             hero: {
@@ -63,7 +69,8 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                 //Check if damage is done
                 let opposingHeroInt = Number(opposingHero.data.hero.powerstats.intelligence);
                 let actingHeroInt = Number(actingHero.data.hero.powerstats.intelligence)
-                if (opposingHeroInt>= actingHeroInt) {
+                if (opposingHeroInt >= actingHeroInt) {
+                    console.log("We DID IT!")
                     return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`
                 } else {
                     //Calculate damage done after the prompt
@@ -72,6 +79,7 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
                     }, 3000);
+                    console.log("We DID IT!")
                     return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
                 }
             },
@@ -86,14 +94,16 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                 let opposingHeroStr = Number(opposingHero.data.hero.powerstats.strength);
                 let actingHeroStr = Number(actingHero.data.hero.powerstats.strength)
                 if (opposingHero.data.hero.powerstats.strength >= actingHero.data.hero.powerstats.strength) {
+                    console.log("We DID IT!")
                     return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`
                 } else {
                     //Calculate damage done after the prompt
                     let dmg = actingHeroStr - opposingHeroStr;
-                    
+                    opposingPlayer.takeDmg(dmg);
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
                     }, 3000);
+                    console.log("We DID IT!")
                     return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
                 }
             },
@@ -108,20 +118,24 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                 let opposingHeroSpd = Number(opposingHero.data.hero.powerstats.speed);
                 let actingHeroSpd = Number(actingHero.data.hero.powerstats.speed)
                 if (opposingHeroSpd >= actingHeroSpd) {
+                    console.log("We DID IT!")
                     return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`
                 } else {
                     //Calculate damage done after the prompt
                     let dmg = actingHeroSpd - opposingHeroSpd
                     //After a delay set
+                    opposingPlayer.takeDmg(dmg);
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
                     }, 3000);
+                    console.log("We DID IT!")
                     return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
                 }
             },
             type: "spd"
         },
     ]
+
     function getDur(total, heroResult) {
         let dur = heroResult.data.hero.powerstats.durability;
         if (dur === "null") {
@@ -144,9 +158,8 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
         });
         //Set the computers prompt to a random one
         setCurrentPrompt(battlePrompts[Math.floor(Math.random() * battlePrompts.length)]);
-        setCurrentEnemyHero((prevEnemyHero) => {
+        setCurrentEnemyHero(() => {
             const newHero = { ...teamTwo[Math.floor(Math.random() * teamTwo.length)] }
-            console.log(newHero);
             return newHero
         });
     }, [])
@@ -158,22 +171,42 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
 
 
     return (
-        <div className='flex justify-between my-12 mx-9'>
-            <h1>Player One Health: {playerOne.health}</h1>
-            {currentEnemyHero.loading ? (
-                "Loading"
-            ) : (
-                <div>
-                    <h3>{currentPrompt.generatePrompt(currentEnemyHero.data.hero.name)}</h3>
-                    <img
-                        className="w-40 h-40 rounded"
-                        src={currentEnemyHero.data.hero.image.url}
-                    />
-                </div>
-            )}
-            <h1>Player Two Health: {playerTwo.health}</h1>
-            {/* <h1> Prompt Resolution: {currentPrompt.resolvePrompt(playerTwo, playerOne, currentEnemyHero, teamOne[0])}</h1> */}
-            <button className="nbtn btn-blue"onClick={() => {playerOne.takeDmg(5)}}>  </button>
+        <div>
+            <div className='flex justify-between my-12 mx-9'>
+                <h1>Player One Health: {playerOne.health}</h1>
+                {currentEnemyHero.loading ? (
+                    "Loading"
+                ) : (
+                    <div>
+                        <h3>{currentPrompt.generatePrompt(currentEnemyHero.data.hero.name)}</h3>
+                        <img
+                            className="w-40 h-40 rounded"
+                            src={currentEnemyHero.data.hero.image.url}
+                        />
+                    </div>
+                )}
+                <h1>Player Two Health: {playerTwo.health}</h1>
+                {/* <button
+                  className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => playerOne.takeDmg(5)}
+                  >
+                  Take Damage
+                </button> */}
+            </div>
+            <div>
+            {teamOne.map((heroResult) => {
+            return (
+              <div className="flex items-center mt-4">
+                <img
+                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
+                  onClick={() => currentPrompt.resolvePrompt(playerTurn ? playerOne : playerTwo, playerTurn ? playerTwo : playerOne, heroResult, currentEnemyHero)}
+                  src={heroResult.data.hero.image.url}
+                ></img>
+                <span className="ml-2">{heroResult.data.hero.name}</span>
+              </div>
+            );
+          })}
+            </div>
         </div>
     )
 }

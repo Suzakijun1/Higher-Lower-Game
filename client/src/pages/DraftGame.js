@@ -52,7 +52,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold text-center mt-8">
         Welcome to the Game!
       </h1>
-      <DraftBody 
+      {isDrafting ? <DraftBody 
       heroOneId={heroOneId}
       heroTwoId={heroTwoId}
       setHeroOneId={setHeroOneId}
@@ -64,7 +64,7 @@ export default function Home() {
       setTeamOne={setTeamOne}
       setTeamTwo={setTeamTwo}
       setIsDrafting={setIsDrafting}
-      />
+      /> : <h1 className="text-3xl font-bold text-center mt-8">Insert The Screen After The Draft HERE</h1>} 
       <Footer />
     </div>
   );

@@ -1,8 +1,11 @@
 import { useQuery } from "@apollo/client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { HERO_IMG } from "../utils/queries";
 
 const DraftBody = (props) => {
+  const MAX_TEAM_SIZE = 5;
+  const [draftRounds, setDraftRounds] = useState(0);
+
   const heroOneResults = useQuery(HERO_IMG, {
     variables: {
       heroId: props.heroOneId + "",
@@ -17,6 +20,7 @@ const DraftBody = (props) => {
   useEffect(() => {
     console.log(props.teamOne);
     console.log(props.teamTwo);
+    console.log(draftRounds)
 
     //Get new hero one id
     let newHeroOneId =
@@ -36,6 +40,11 @@ const DraftBody = (props) => {
 
     newIds = props.unseenIds.filter((id) => id !== newHeroTwoId);
     props.setUnseenIds(newIds);
+
+    //Once you draft the amount to hit the max team size set the isDrafting boolean to false.
+    if(draftRounds === MAX_TEAM_SIZE){
+      props.setIsDrafting(false);
+    }
   }, [props.teamOne]);
 
   const onSelectHero = (heroResult, leftoverResult) => {
@@ -47,11 +56,16 @@ const DraftBody = (props) => {
     props.setTeamTwo((prevTeamTwo) => {
       return [...prevTeamTwo, leftoverResult];
     });
+
+    //After adding to the teams increase the amount of draft rounds done. 
+    setDraftRounds((prevDraftRounds) => {
+      return prevDraftRounds + 1
+    })
+
   };
 
   function getInt(total, heroResult) {
     let int = heroResult.data.hero.powerstats.intelligence;
-    console.log(int);
     if (int === "null") {
       return total;
     }
@@ -59,7 +73,6 @@ const DraftBody = (props) => {
   }
   function getStr(total, heroResult) {
     let str = heroResult.data.hero.powerstats.strength;
-    console.log(str);
     if (str === "null") {
       return total;
     }
@@ -67,7 +80,6 @@ const DraftBody = (props) => {
   }
   function getSpd(total, heroResult) {
     let spd = heroResult.data.hero.powerstats.speed;
-    console.log(spd);
     if (spd === "null") {
       return total;
     }
@@ -75,7 +87,6 @@ const DraftBody = (props) => {
   }
   function getDur(total, heroResult) {
     let dur = heroResult.data.hero.powerstats.durability;
-    console.log(dur);
     if (dur === "null") {
       return total;
     }
@@ -83,7 +94,6 @@ const DraftBody = (props) => {
   }
   function getPow(total, heroResult) {
     let pow = heroResult.data.hero.powerstats.power;
-    console.log(pow);
     if (pow === "null") {
       return total;
     }
@@ -91,7 +101,6 @@ const DraftBody = (props) => {
   }
   function getCmb(total, heroResult) {
     let cmb = heroResult.data.hero.powerstats.combat;
-    console.log(cmb);
     if (cmb === "null") {
       return;
     }

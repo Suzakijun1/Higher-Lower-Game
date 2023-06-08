@@ -110,8 +110,10 @@ const DraftBody = (props) => {
   }
 
   return (
-    <div className="flex flex-col items-center mt-10 h-screen">
+    <div
+      className="flex flex-col items-center mt-10 h-screen"
       
+    >
       {/* HEADING */}
       <h1 className="text-2xl font-bold mb-4">Pick One</h1>
 
@@ -245,10 +247,10 @@ const DraftBody = (props) => {
           </div> */}
         </div>
       </div>
-      {/* :::::::: Divider :::::::::: */ }
-      <div>
+      {/* :::::::: Divider :::::::::: */}
+      {/* <div>
         <Divider />
-      </div>
+      </div> */}
       <div className="flex gap-6">
         {/* Left Column - Player */}
         <div className="flex flex-col">

@@ -1,5 +1,5 @@
 import React from "react";
-import line from "../images/hr3-fabienne-curty.gif";
+import line from "../images/hr-1.png";
 
 export default function Divider() {
   return (

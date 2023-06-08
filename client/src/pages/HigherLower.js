@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import HigherLowerBody from "../components/HigherLowerBody";
-import { useQuery } from "@apollo/client";
-import { HERO_IMG } from "../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { HERO_IMG, USER_HIGHSCORE} from "../utils/queries";
+import { UPDATE_HIGH_SCORE} from "../utils/mutations";
 
 export default function HigherLower() {
   const [heroOneId, setHeroOneId] = useState(null);
@@ -10,6 +11,14 @@ export default function HigherLower() {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [powerStat, setPowerStat] = useState("");
+  const [winStreak, setWinStreak] = useState(0);
+
+  const userHighScoreResult = useQuery(USER_HIGHSCORE, {
+    variables : {
+      username : "testing1234"
+    }
+  });
+  const [updateHighScore] = useMutation(UPDATE_HIGH_SCORE);
 
   const heroOneResults = useQuery(HERO_IMG, {
     variables: {
@@ -45,6 +54,8 @@ export default function HigherLower() {
       //Filter the new id out of the unseenIds
       ids = ids.filter((id) => id !== randomHeroTwoId);
 
+      console.log()
+
       //Set the new unseenIds array
       setUnseenIds(ids);
     };
@@ -70,11 +81,33 @@ export default function HigherLower() {
       (answer === "lower" && heroTwoPowerStat < heroOnePowerStat);
 
     if (isCorrect) {
-      setScore(score + 1);
+      setScore((prevScore) => prevScore + 1);
       setHeroOneId(heroTwoId);
       setUnseenIds((prevIds) => prevIds.filter((id) => id !== heroTwoId));
+
+      // Check if the current score is higher than the win streak
+      setWinStreak((prevWinStreak) => {
+        const newWinStreak =
+          score + 1 > prevWinStreak ? score + 1 : prevWinStreak;
+        updateHighScore({
+          variables: {
+            highScore: newWinStreak,
+          },
+        })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        return newWinStreak;
+      });
     } else {
       setGameOver(true);
+      if (score > winStreak) {
+        setWinStreak(score); // Update the win streak if the current score is higher
+      }
+      setWinStreak(0); // Reset the win streak
     }
   };
 
@@ -90,6 +123,7 @@ export default function HigherLower() {
 
   return (
     <div className="container mx-auto px-4">
+      {userHighScoreResult.loading ? <div>Loading</div> : <div>{userHighScoreResult.data?.user?.higherLowerGameHighestScore}</div>}
       <h1 className="text-3xl font-bold text-center mt-8">
         Welcome to the Higher Lower Game!
       </h1>
@@ -106,6 +140,7 @@ export default function HigherLower() {
           heroTwoResults={heroTwoResults}
           powerStat={powerStat}
           score={score}
+          winStreak={winStreak}
           handleAnswer={handleAnswer}
         />
       )}

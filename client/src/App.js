@@ -34,7 +34,7 @@ const client = new ApolloClient({
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   return (
     <ApolloProvider client={client}>
       <Router>

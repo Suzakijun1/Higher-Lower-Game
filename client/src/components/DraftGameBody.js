@@ -114,28 +114,36 @@ const DraftBody = (props) => {
       <h1 className="text-2xl font-bold mb-4">Pick One</h1>
 
       <div className="flex gap-6 mt-4">
-        {/* Left Superhero/Villain Card - Will hold image*/}
+        {/* ::::::::::::::::::::::::::::::::::::::::::::: */}
+        {/* Left Superhero/Villain Card - Will hold image */}
+        {/* ::::::::::::::::::::::::::::::::::::::::::::: */}
         {heroOneResults.loading ? (
           "Loading"
         ) : (
           <div>
-            <h3>{heroOneResults.data.hero.name}</h3>
+            <h3 className="my-2 mx-2 text-center">
+              {heroOneResults.data.hero.name}
+            </h3>
             <img
               onClick={() => onSelectHero(heroOneResults, heroTwoResults)}
-              className="w-40 h-40 rounded"
+              className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/30 hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48"
               src={heroOneResults.data.hero.image.url}
             ></img>
           </div>
         )}
+        {/* :::::::::::::::::::::::::::::::::::::::::::::: */}
         {/* Right Superhero/Villain Card - Will hold image */}
+        {/* :::::::::::::::::::::::::::::::::::::::::::::: */}
         {heroTwoResults.loading ? (
           "Loading"
         ) : (
           <div>
-            <h3>{heroTwoResults.data.hero.name}</h3>
+            <h3 className="my-2 mx-2 text-center">
+              {heroTwoResults.data.hero.name}
+            </h3>
             <img
               onClick={() => onSelectHero(heroTwoResults, heroOneResults)}
-              className="w-40 h-40 rounded"
+              className="w-40 h-40 my-3 rounded shadow-lg shadow-blue-500/30 min-w-full hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48"
               src={heroTwoResults.data.hero.image.url}
             ></img>
           </div>
@@ -173,7 +181,7 @@ const DraftBody = (props) => {
                 )}`
               : ""}
           </div>
-          <div>
+          {/* <div>
             {props.teamOne.length !== 0
               ? `Power: ${Math.round(
                   props.teamOne.reduce(getPow, 0) / props.teamOne.length
@@ -186,13 +194,13 @@ const DraftBody = (props) => {
                   props.teamOne.reduce(getCmb, 0) / props.teamOne.length
                 )}`
               : ""}
-          </div>
+          </div> */}
 
           {props.teamOne.map((heroResult) => {
             return (
               <div className="flex items-center mt-4">
                 <img
-                  className="w-8 h-8 bg-gray-200 rounded-full"
+                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
                   src={heroResult.data.hero.image.url}
                 ></img>
                 <span className="ml-2">{heroResult.data.hero.name}</span>
@@ -238,7 +246,7 @@ const DraftBody = (props) => {
                 )}`
               : ""}
           </div>
-          <div>
+          {/* <div>
             {props.teamTwo.length !== 0
               ? `Power: ${Math.round(
                   props.teamTwo.reduce(getPow, 0) / props.teamTwo.length
@@ -251,13 +259,13 @@ const DraftBody = (props) => {
                   props.teamTwo.reduce(getCmb, 0) / props.teamTwo.length
                 )}`
               : ""}
-          </div>
+          </div> */}
           <div className="w-100 h-100 bg-gray-200"></div>
           {props.teamTwo.map((heroResult) => {
             return (
               <div className="flex items-center mt-4">
                 <img
-                  className="w-8 h-8 bg-gray-200 rounded-full"
+                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
                   src={heroResult.data.hero.image.url}
                 ></img>
                 <span className="ml-2">{heroResult.data.hero.name}</span>

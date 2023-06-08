@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import Modal from "./modal";
+import Modal from "./Modal";
 
 
 const navigation = [
@@ -166,7 +166,6 @@ export default function NavBar({isModalOpen, setIsModalOpen}) {
                 </Disclosure.Button>
               ))}
             </div>
-            
           </Disclosure.Panel>
 
           

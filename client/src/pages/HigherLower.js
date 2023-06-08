@@ -1,4 +1,4 @@
-import HigherLowerBody from "../components/higher-lower-body";
+import HigherLowerBody from "../components/HigherLowerBody";
 
 export default function HigherLower() {
   return (

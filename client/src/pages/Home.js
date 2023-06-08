@@ -1,7 +1,7 @@
 import React from "react";
 
-import GameModesComponent from "../components/game-mode";
-import Footer from "../components/footer";
+import GameModesComponent from "../components/GameMode";
+import Footer from "../components/Footer";
 
 
 

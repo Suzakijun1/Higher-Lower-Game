@@ -6,10 +6,10 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
         name: "Player 1",
         health: 0,
         takeDmg: (dmg) => {
-            setPlayerOne((prevPlayerOne) =>{
+            setPlayerOne((prevPlayerOne) => {
                 return {
-                ...prevPlayerOne,
-                health : prevPlayerOne.health - dmg
+                    ...prevPlayerOne,
+                    health: prevPlayerOne.health - dmg
                 }
             });
         }
@@ -20,23 +20,26 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
         name: "Player 2",
         health: 0,
         takeDmg: (dmg) => {
-            setPlayerTwo((prevPlayerTwo) =>{
+            setPlayerTwo((prevPlayerTwo) => {
                 return {
-                ...prevPlayerTwo,
-                health : prevPlayerTwo.health - dmg
+                    ...prevPlayerTwo,
+                    health: prevPlayerTwo.health - dmg
                 }
             });
         }
     })
     //This indicates whose turn to attack is
     const [playerTurn, setPlayerTurn] = useState(false);
-    
+
     //Checks if you are in the process of using the prompt
     const [selectingPrompt, setSelectingPrompt] = useState(false);
 
     //Current Prompt Indicates the action that want to be taken once we decide on the heroes
     const [currentPrompt, setCurrentPrompt] = useState({
         generatePrompt: (actingPlayer, opposingPlayer) => {
+            return ("No Prompt")
+        },
+        generateButtonPrompt: (actingPlayer, opposingPlayer) => {
             return ("No Prompt")
         },
         resolvePrompt: (actingPlayer, oposingPlayer, actingHero, opposingHero) => {
@@ -63,9 +66,12 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
     })
 
     const battlePrompts = [
-        {   
+        {
             generatePrompt: (actingPlayer, opposingPlayer) => {
                 document.getElementById("result").innerText = `${actingPlayer} attempts to trick ${opposingPlayer}`
+                return (`${actingPlayer} attempts to trick ${opposingPlayer}`)
+            },
+            generateButtonPrompt: (actingPlayer, opposingPlayer) => {
                 return (`${actingPlayer} attempts to trick ${opposingPlayer}`)
             },
             resolvePrompt: (actingPlayer, opposingPlayer, actingHero, opposingHero) => {
@@ -76,10 +82,10 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                     console.log("We DID IT!")
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
-                        if(actingPlayer.name === "Player 2")
+                        if (actingPlayer.name === "Player 2")
                             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-                    }, 3000);
-                    document.getElementById("result").innerText=`${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
+                    }, 1000);
+                    document.getElementById("result").innerText = `${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
                     return `${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
                 } else {
                     //Calculate damage done after the prompt
@@ -87,11 +93,11 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                     opposingPlayer.takeDmg(dmg);
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
-                        if(actingPlayer.name === "Player 2")
+                        if (actingPlayer.name === "Player 2")
                             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-                    }, 3000);
+                    }, 1000);
                     console.log("We DID IT!")
-                    document.getElementById("result").innerText=`${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+                    document.getElementById("result").innerText = `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
                     return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
                 }
             },
@@ -99,7 +105,9 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
         },
         {
             generatePrompt: (actingPlayer, opposingPlayer) => {
-                document.getElementById("result").innerText =`${actingPlayer} is hurling a car at ${opposingPlayer}`
+                document.getElementById("result").innerText = `${actingPlayer} is hurling a car at ${opposingPlayer}`
+            },
+            generateButtonPrompt: (actingPlayer, opposingPlayer) => {
                 return (`${actingPlayer} is hurling a car at ${opposingPlayer}`)
             },
             resolvePrompt: (actingPlayer, opposingPlayer, actingHero, opposingHero) => {
@@ -110,10 +118,10 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                     console.log("We DID IT!")
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
-                        if(actingPlayer.name === "Player 2")
+                        if (actingPlayer.name === "Player 2")
                             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-                    }, 3000);
-                    document.getElementById("result").innerText =`${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
+                    }, 1000);
+                    document.getElementById("result").innerText = `${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
                     return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`
                 } else {
                     //Calculate damage done after the prompt
@@ -121,9 +129,9 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                     opposingPlayer.takeDmg(dmg);
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
-                        if(actingPlayer.name === "Player 2")
+                        if (actingPlayer.name === "Player 2")
                             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-                    }, 3000);
+                    }, 1000);
                     console.log("We DID IT!")
                     document.getElementById("result").innerText = `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
                     return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
@@ -133,7 +141,9 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
         },
         {
             generatePrompt: (actingPlayer, opposingPlayer) => {
-                document.getElementById("result").innerText =`${actingPlayer} runs circles around ${opposingPlayer}`
+                document.getElementById("result").innerText = `${actingPlayer} runs circles around ${opposingPlayer}`
+            },
+            generateButtonPrompt: (actingPlayer, opposingPlayer) => {
                 return (`${actingPlayer} runs circles around ${opposingPlayer}`)
             },
             resolvePrompt: (actingPlayer, opposingPlayer, actingHero, opposingHero) => {
@@ -144,9 +154,9 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                     console.log("We DID IT!")
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
-                        if(actingPlayer.name === "Player 2")
+                        if (actingPlayer.name === "Player 2")
                             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-                    }, 3000);
+                    }, 1000);
                     document.getElementById("result").innerText = `${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
                     return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`
                 } else {
@@ -156,10 +166,10 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                     opposingPlayer.takeDmg(dmg);
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
-                        if(actingPlayer.name === "Player 2")
+                        if (actingPlayer.name === "Player 2")
                             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-                    }, 3000);
-                    document.getElementById("result").innerText =`${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+                    }, 1000);
+                    document.getElementById("result").innerText = `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
                     return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
                 }
             },
@@ -197,9 +207,23 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
 
     // Hero 
     useEffect(() => {
-       currentPrompt.generatePrompt(playerTurn ? playerOne.name : playerTwo.name, playerTurn ? playerTwo.name : playerOne.name)
+        currentPrompt.generatePrompt(playerTurn ? playerOne.name : playerTwo.name, playerTurn ? playerTwo.name : playerOne.name)
+        setCurrentEnemyHero(() => {
+            const newHero = { ...teamTwo[Math.floor(Math.random() * teamTwo.length)] }
+            return newHero
+        });
     }, [currentPrompt])
 
+    useEffect(() => {
+        if (!playerTurn) {
+            //Set the computers prompt to a random one
+            setCurrentPrompt(battlePrompts[Math.floor(Math.random() * battlePrompts.length)]);
+            setCurrentEnemyHero(() => {
+                const newHero = { ...teamTwo[Math.floor(Math.random() * teamTwo.length)] }
+                return newHero
+            });
+        }
+    }, [playerTurn])
 
     return (
         <div>
@@ -220,30 +244,30 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
                 <h1>Player Two Health: {playerTwo.health}</h1>
             </div>
             <div className='flex flex-col items-center'>
-            {!selectingPrompt ? teamOne.map((heroResult) => {
-            return (
-              <div className="flex items-center mt-4">
-                <img
-                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
-                  onClick={() => currentPrompt.resolvePrompt(playerTurn ? playerOne : playerTwo, playerTurn ? playerTwo : playerOne, heroResult, currentEnemyHero)}
-                  src={heroResult.data.hero.image.url}
-                ></img>
-                <span className="ml-2">{heroResult.data.hero.name}</span>
-              </div>
-            );
-          }) : 
-          battlePrompts.map((prompt) => {
-            return(
-                <div className="flex items-center mt-4">
-                <button onClick={()=> {
-                    setCurrentPrompt(prompt);
-                    setSelectingPrompt(false);
+                {!selectingPrompt ? teamOne.map((heroResult) => {
+                    return (
+                        <div className="flex items-center mt-4">
+                            <img
+                                className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
+                                onClick={() => currentPrompt.resolvePrompt(playerTurn ? playerOne : playerTwo, playerTurn ? playerTwo : playerOne, heroResult, currentEnemyHero)}
+                                src={heroResult.data.hero.image.url}
+                            ></img>
+                            <span className="ml-2">{heroResult.data.hero.name}</span>
+                        </div>
+                    );
+                }) :
+                    battlePrompts.map((prompt) => {
+                        return (
+                            <div className="flex items-center mt-4">
+                                <button onClick={() => {
+                                    setCurrentPrompt(prompt);
+                                    setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
+                                }
+                                } className="bg-red-500 border-stone-800 p-4 rounded">{prompt.generateButtonPrompt(playerOne.name, playerTwo.name)}</button>
+                            </div>
+                        )
+                    })
                 }
-                    } className="bg-red-500 border-stone-800 p-4 rounded">{prompt.generatePrompt(playerOne.name, playerTwo.name)}</button>
-              </div>
-            )
-          })
-          }
             </div>
         </div>
     )

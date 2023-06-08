@@ -47,6 +47,7 @@ const DraftBody = (props) => {
     if (draftRounds === MAX_TEAM_SIZE) {
       props.setIsDrafting(false);
     }
+    
   }, [props.teamOne]);
 
   const onSelectHero = (heroResult, leftoverResult) => {

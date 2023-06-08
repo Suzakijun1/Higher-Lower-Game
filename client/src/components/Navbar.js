@@ -2,11 +2,12 @@ import React, { useState, Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Modal from "./Modal";
+import HelpModal from './HelpModal';
 
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
-  
+
 ];
 
 // Sample data for the modal
@@ -22,13 +23,19 @@ function classNames(...classes) {
 }
 
 
-export default function NavBar({isModalOpen, setIsModalOpen}) {
+export default function NavBar({ isModalOpen, setIsModalOpen }) {
 
   const toggleModal = () => {
-    setIsModalOpen((PrevIsModalOpen)=>!PrevIsModalOpen);
+    setIsModalOpen((PrevIsModalOpen) => !PrevIsModalOpen);
   };
-  
- 
+
+  const [showHelpModal, setShowHelpModal] = useState(false);
+
+  const openHelpModal = () => {
+    setShowHelpModal(true);
+  };
+
+
 
 
   return (
@@ -83,10 +90,12 @@ export default function NavBar({isModalOpen, setIsModalOpen}) {
                 <button
                   type="button"
                   className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none"
+                  onClick={openHelpModal}
                 >
                   <span className="sr-only">How to play</span>
                   <QuestionMarkCircleIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
+                {showHelpModal && <HelpModal onClose={() => setShowHelpModal(false)} />}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -115,7 +124,7 @@ export default function NavBar({isModalOpen, setIsModalOpen}) {
                           <a
                             data-modal-target="defaultModal"
                             data-modal-toggle="defaultModal"
-                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                             onClick={toggleModal}
                           >
                             Your Profile
@@ -168,7 +177,7 @@ export default function NavBar({isModalOpen, setIsModalOpen}) {
             </div>
           </Disclosure.Panel>
 
-          
+
 
           {isModalOpen ? <Modal
             isOpen={isModalOpen}

@@ -14,8 +14,16 @@ export const ADD_USER = gql`
 `;
 export const LOGIN_USER = gql`
   mutation Mutation($username: String!, $password: String!) {
-  login(username: $username, password: $password) {
-    token
+    login(username: $username, password: $password) {
+      token
+    }
   }
-}
+`;
+export const UPDATE_HIGH_SCORE = gql`
+  mutation UpdateHighScore($highScore: Int!) {
+    updateHighScore(highScore: $highScore) {
+      _id
+      higherLowerGameHighestScore
+    }
+  }
 `;

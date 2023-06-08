@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import { useQuery } from "@apollo/client";
 import DraftBody from "../components/DraftGameBody";
+import DraftBattleBody from "../components/DraftBattleTesting";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
 import {HERO_IMG} from "../utils/queries"
@@ -64,7 +65,10 @@ export default function Home() {
       setTeamOne={setTeamOne}
       setTeamTwo={setTeamTwo}
       setIsDrafting={setIsDrafting}
-      /> : <h1 className="text-3xl font-bold text-center mt-8">Insert The Screen After The Draft HERE</h1>} 
+      /> : <DraftBattleBodyTest 
+      teamOne={teamOne}
+      teamTwo={teamTwo}
+      />} 
       <Footer />
     </div>
   );

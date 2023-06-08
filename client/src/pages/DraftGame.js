@@ -4,7 +4,7 @@ import DraftBody from "../components/DraftGameBody";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
 import { HERO_IMG } from "../utils/queries"
-import bgImage from "../images/battlegrounds-2.jpeg";
+import bgImage from "../images/battlegrounds-5.jpeg";
 
 export default function Home() {
   const [teamOne, setTeamOne] = useState([]);

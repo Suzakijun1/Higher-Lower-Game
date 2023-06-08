@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import DraftGame from "./pages/DraftGame";
+import HigherLower from "./pages/HigherLower";
 
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
@@ -32,24 +33,25 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <ApolloProvider client={client}>
       <Router>
-          <Navbar
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-          />
-          <div className={`${isModalOpen ? "fixed inset-0 -z-30 bg-red-500 opacity-50" : ""}`}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/draftgame" element={<DraftGame />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-            </Routes>
-          </div>
+        <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <div
+          className={`${
+            isModalOpen ? "fixed inset-0 -z-30 bg-red-500 opacity-50" : ""
+          }`}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/draftgame" element={<DraftGame />} />
+            <Route path="/higherlower" element={<HigherLower />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </div>
       </Router>
     </ApolloProvider>
   );

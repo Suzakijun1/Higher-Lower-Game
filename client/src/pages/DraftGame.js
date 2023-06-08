@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import DraftBody from "../components/DraftGameBody";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
-import {HERO_IMG} from "../utils/queries"
+import { HERO_IMG } from "../utils/queries";
 
 export default function Home() {
   const [teamOne, setTeamOne] = useState([]);
@@ -12,59 +12,63 @@ export default function Home() {
   const [heroOneId, setHeroOneId] = useState(0);
   const [heroTwoId, setHeroTwoId] = useState(0);
   const [unseenIds, setUnseenIds] = useState([]);
-  
 
   useEffect(async () => {
     //Create an array of all possible ids
-    let ids =[]; 
-    for(let i = 1; i < 732; i++){
+    let ids = [];
+    for (let i = 1; i < 732; i++) {
       ids.push(i);
     }
 
-    //Set Hero One Id to a valid random id 
-    setHeroOneId(Math.floor(Math.random() * 730 + 1))
-    
+    //Set Hero One Id to a valid random id
+    setHeroOneId(Math.floor(Math.random() * 730 + 1));
+
     //Remove the id generated from the unseenIds array
-    ids = ids.filter(id => id !== heroOneId);
-    
+    ids = ids.filter((id) => id !== heroOneId);
+
     //Using the unseenIds array get a random ids from it
-    let newHeroTwoId = ids[Math.floor(Math.random() * ids.length)]
-    
+    let newHeroTwoId = ids[Math.floor(Math.random() * ids.length)];
+
     //Set the aforementioned value to heroTwoId
-    setHeroTwoId(newHeroTwoId)
+    setHeroTwoId(newHeroTwoId);
 
     //Filter the new id out of the unseenIds
-    ids = ids.filter(id => id !== heroTwoId);
+    ids = ids.filter((id) => id !== heroTwoId);
 
     //Set the new unseenIds array
     setUnseenIds(ids);
-  }, [])
+  }, []);
 
-  useEffect(()=>{
-    console.log(heroOneId)
-    console.log(heroTwoId)
-    console.log(unseenIds)
-  },[unseenIds])
+  useEffect(() => {
+    console.log(heroOneId);
+    console.log(heroTwoId);
+    console.log(unseenIds);
+  }, [unseenIds]);
 
   return (
     <div>
-      
       <h1 className="text-3xl font-bold text-center mt-8">
         Welcome to the Game!
       </h1>
-      {isDrafting ? <DraftBody 
-      heroOneId={heroOneId}
-      heroTwoId={heroTwoId}
-      setHeroOneId={setHeroOneId}
-      setHeroTwoId={setHeroTwoId}
-      teamOne={teamOne}
-      teamTwo={teamTwo}
-      unseenIds={unseenIds}
-      setUnseenIds={setUnseenIds}
-      setTeamOne={setTeamOne}
-      setTeamTwo={setTeamTwo}
-      setIsDrafting={setIsDrafting}
-      /> : <h1 className="text-3xl font-bold text-center mt-8">Insert The Screen After The Draft HERE</h1>} 
+      {isDrafting ? (
+        <DraftBody
+          heroOneId={heroOneId}
+          heroTwoId={heroTwoId}
+          setHeroOneId={setHeroOneId}
+          setHeroTwoId={setHeroTwoId}
+          teamOne={teamOne}
+          teamTwo={teamTwo}
+          unseenIds={unseenIds}
+          setUnseenIds={setUnseenIds}
+          setTeamOne={setTeamOne}
+          setTeamTwo={setTeamTwo}
+          setIsDrafting={setIsDrafting}
+        />
+      ) : (
+        <h1 className="text-3xl font-bold text-center mt-8">
+          Insert The Screen After The Draft HERE
+        </h1>
+      )}
       <Footer />
     </div>
   );

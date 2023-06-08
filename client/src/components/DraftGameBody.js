@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { HERO_IMG } from "../utils/queries";
+import Divider from "./Divider";
+
 
 const DraftBody = (props) => {
   const MAX_TEAM_SIZE = 5;
@@ -20,7 +22,7 @@ const DraftBody = (props) => {
   useEffect(() => {
     console.log(props.teamOne);
     console.log(props.teamTwo);
-    console.log(draftRounds)
+    console.log(draftRounds);
 
     //Get new hero one id
     let newHeroOneId =
@@ -42,7 +44,7 @@ const DraftBody = (props) => {
     props.setUnseenIds(newIds);
 
     //Once you draft the amount to hit the max team size set the isDrafting boolean to false.
-    if(draftRounds === MAX_TEAM_SIZE){
+    if (draftRounds === MAX_TEAM_SIZE) {
       props.setIsDrafting(false);
     }
   }, [props.teamOne]);
@@ -57,11 +59,10 @@ const DraftBody = (props) => {
       return [...prevTeamTwo, leftoverResult];
     });
 
-    //After adding to the teams increase the amount of draft rounds done. 
+    //After adding to the teams increase the amount of draft rounds done.
     setDraftRounds((prevDraftRounds) => {
-      return prevDraftRounds + 1
-    })
-
+      return prevDraftRounds + 1;
+    });
   };
 
   function getInt(total, heroResult) {
@@ -78,7 +79,7 @@ const DraftBody = (props) => {
     }
     return total + Number(str);
   }
-  
+
   function getSpd(total, heroResult) {
     let spd = heroResult.data.hero.powerstats.speed;
     if (spd === "null") {
@@ -110,6 +111,7 @@ const DraftBody = (props) => {
 
   return (
     <div className="flex flex-col items-center mt-10 h-screen">
+      
       {/* HEADING */}
       <h1 className="text-2xl font-bold mb-4">Pick One</h1>
 
@@ -121,7 +123,7 @@ const DraftBody = (props) => {
           "Loading"
         ) : (
           <div>
-            <h3 className="my-2 mx-2 text-center">
+            <h3 className="my-2 mx-2 text-center w-40">
               {heroOneResults.data.hero.name}
             </h3>
             <img
@@ -138,7 +140,7 @@ const DraftBody = (props) => {
           "Loading"
         ) : (
           <div>
-            <h3 className="my-2 mx-2 text-center">
+            <h3 className="my-2 mx-2 text-center w-40">
               {heroTwoResults.data.hero.name}
             </h3>
             <img
@@ -149,10 +151,10 @@ const DraftBody = (props) => {
           </div>
         )}
       </div>
-      <div className="flex gap-6">
-        {/* Left Column - Player */}
-        <div className="flex flex-col">
-          <div className="w-100 h-100">Player 1</div>
+      {/* DIV FOR STATS */}
+      <div className="flex space-x-20 mt-3 mb-4">
+        {/* STATS PLAYER 1*/}
+        <div class="container mx-auto">
           <div>
             {props.teamOne.length !== 0
               ? `Intelligence: ${Math.round(
@@ -195,29 +197,10 @@ const DraftBody = (props) => {
                 )}`
               : ""}
           </div> */}
-
-          {props.teamOne.map((heroResult) => {
-            return (
-              <div className="flex items-center mt-4">
-                <img
-                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
-                  src={heroResult.data.hero.image.url}
-                ></img>
-                <span className="ml-2">{heroResult.data.hero.name}</span>
-              </div>
-            );
-          })}
-          {/* Add more names here */}
         </div>
 
-        {/* Left and right column divider "VS" */}
-        <div className="flex flex-col items-center justify-center">
-          <h2 className="text-4xl font-bold text-gray-500">VS</h2>
-        </div>
-
-        {/* Right Column - Computer */}
-        <div className="flex flex-col">
-          <div className="w-100 h-100">Player 1</div>
+        {/* STATS PLAYER 2*/}
+        <div class="container mx-auto">
           <div>
             {props.teamTwo.length !== 0
               ? `Intelligence: ${Math.round(
@@ -260,6 +243,40 @@ const DraftBody = (props) => {
                 )}`
               : ""}
           </div> */}
+        </div>
+      </div>
+      {/* :::::::: Divider :::::::::: */ }
+      <div>
+        <Divider />
+      </div>
+      <div className="flex gap-6">
+        {/* Left Column - Player */}
+        <div className="flex flex-col">
+          <div className="w-100 h-100">Player 1</div>
+
+          {props.teamOne.map((heroResult) => {
+            return (
+              <div className="flex items-center mt-4">
+                <img
+                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
+                  src={heroResult.data.hero.image.url}
+                ></img>
+                <span className="ml-2">{heroResult.data.hero.name}</span>
+              </div>
+            );
+          })}
+          {/* Add more names here */}
+        </div>
+
+        {/* Left and right column divider "VS" */}
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="text-4xl font-bold text-gray-500">VS</h2>
+        </div>
+
+        {/* Right Column - Computer */}
+        <div className="flex flex-col">
+          <div className="w-100 h-100">Player 2</div>
+
           <div className="w-100 h-100 bg-gray-200"></div>
           {props.teamTwo.map((heroResult) => {
             return (

@@ -197,21 +197,20 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
 
     // Hero 
     useEffect(() => {
-       if(playerTurn){
-        console.log(playerTurn)
-       }
-    }, [playerTurn])
+       currentPrompt.generatePrompt(playerTurn ? playerOne.name : playerTwo.name, playerTurn ? playerTwo.name : playerOne.name)
+    }, [currentPrompt])
 
 
     return (
         <div>
+            <h1 className="text-3xl font-bold text-center mt-8">{playerTurn ? "Your Turn" : "Enemy Turn"}</h1>
             <div className='flex justify-between my-12 mx-9'>
                 <h1>Player One Health: {playerOne.health}</h1>
                 {currentEnemyHero.loading ? (
                     "Loading"
                 ) : (
                     <div>
-                        <h3 id="result">{currentPrompt.generatePrompt(playerTwo.name, playerOne.name)}</h3>
+                        <h3 id="result"></h3>
                         <img
                             className="w-40 h-40 rounded"
                             src={currentEnemyHero.data.hero.image.url}
@@ -236,7 +235,11 @@ export default function DraftBattleBodyTest({ teamOne, teamTwo }) {
           battlePrompts.map((prompt) => {
             return(
                 <div className="flex items-center mt-4">
-                <button className="bg-red-500 border-stone-800 p-4 rounded">{prompt.generatePrompt(playerOne.name, playerTwo.name)}</button>
+                <button onClick={()=> {
+                    setCurrentPrompt(prompt);
+                    setSelectingPrompt(false);
+                }
+                    } className="bg-red-500 border-stone-800 p-4 rounded">{prompt.generatePrompt(playerOne.name, playerTwo.name)}</button>
               </div>
             )
           })

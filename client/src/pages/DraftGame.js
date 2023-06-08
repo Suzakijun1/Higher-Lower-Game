@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import { useQuery } from "@apollo/client";
 import DraftBody from "../components/DraftGameBody";
-import DraftBattleBody from "../components/DraftBattleTesting";
+import DraftBattleBodyTest from "../components/DraftBattleTesting";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
 import {HERO_IMG} from "../utils/queries"

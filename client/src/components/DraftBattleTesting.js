@@ -3,6 +3,12 @@ import React, { useState, useEffect } from 'react';
 export default function DraftBattleBodyTest({teamOne, teamTwo}) {
     const [pOneHealth, setPOneHealth] = useState(0);
     const [pTwoHealth, setPTwoHealth] = useState(0);
+    const [currentPrompt, setCurrentPrompt] = useState({
+        generatePrompt : () => {
+            return ("No Prompt")
+        },
+        type : ""
+    });
     
     const battlePrompts = [
         {
@@ -23,24 +29,6 @@ export default function DraftBattleBodyTest({teamOne, teamTwo}) {
             },
             type: "spd"
         },
-        // {
-        //     generatePrompt: (heroName) => {
-        //         return (`${heroName} is hurling a car at you`)
-        //     },
-        //     type: "int"
-        // },
-        // {
-        //     generatePrompt: (heroName) => {
-        //         return (`${heroName} is hurling a car at you`)
-        //     },
-        //     type: "str"
-        // },
-        // {
-        //     generatePrompt: (heroName) => {
-        //         return (`${heroName} is hurling a car at you`)
-        //     },
-        //     type: "spd"
-        // },
     ]
     function getDur(total, heroResult) {
         let dur = heroResult.data.hero.powerstats.durability;
@@ -51,16 +39,20 @@ export default function DraftBattleBodyTest({teamOne, teamTwo}) {
     }
 
     useEffect(() => {
+        //Add the durability of all heroes to get health for the players
         let p1health = teamOne.reduce(getDur, 0);
         setPOneHealth(p1health);
+        let p2health = teamTwo.reduce(getDur, 0);
+        setPTwoHealth(p2health);
+        //Set the computers prompt to a random one
+        setCurrentPrompt(battlePrompts[Math.floor(Math.random()*battlePrompts.length)]);
     }, [])
 
-    useEffect(() => {
-        console.log(battlePrompts[Math.floor(Math.random()*battlePrompts.length)].generatePrompt(teamTwo[Math.floor(Math.random() * teamTwo.length)].data.hero.name));
-        console.log(pOneHealth)
-    }, [pOneHealth])
-
     return (
-        <h1></h1>
+        <div className='flex justify-center justify-between my-12 mx-9'>
+            <h1>Player One Health: {pOneHealth}</h1>
+            <h1>{currentPrompt !== {} ? currentPrompt.generatePrompt(teamTwo[Math.floor(Math.random() * teamTwo.length)].data.hero.name) : ""}</h1>
+            <h1>Player Two Health: {pTwoHealth}</h1>
+        </div>
     )
 }

@@ -17,7 +17,6 @@ export default function Home() {
         Welcome to the Game!
       </h1>
       <GameModesComponent />
-      <Footer />
     </div>
   );
 };

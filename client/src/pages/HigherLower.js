@@ -4,6 +4,7 @@ import HigherLowerBody from "../components/HigherLowerBody";
 import { useQuery, useMutation } from "@apollo/client";
 import { HERO_IMG, USER_HIGHSCORE } from "../utils/queries";
 import { UPDATE_HIGH_SCORE } from "../utils/mutations";
+import bgImage from "../images/battlegrounds-3.jpeg";
 
 export default function HigherLower() {
   const [heroOneId, setHeroOneId] = useState(null);
@@ -128,46 +129,54 @@ export default function HigherLower() {
   };
 
   return (
-    <div className="container mx-auto px-4">
-      {userHighScoreResult.loading ? (
-        <div>Loading</div>
-      ) : (
-        <div>{userHighScoreResult.data?.user?.higherLowerGameHighestScore}</div>
-      )}
-      <h1 className="text-3xl font-bold text-center mt-8">
-        Welcome to the Higher Lower Game!
-      </h1>
-      {gameOver ? (
-        <div className="mt-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Game Over!</h2>
-          <p className="text-xl">Your score: {score}</p>
-          <div className="justify-center mt-4 space-x-4">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded"
-              onClick={handleTryAgain}
-            >
-              Try Again
-            </button>
-            <Link
-              to="/"
-              className="px-4 py-2 bg-gray-500 font-bold text-white rounded"
-            >
-              Go Back to Main Menu
-            </Link>
+    <div
+      className="bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+      }}
+    >
+      <div className="container mx-auto px-4">
+        {userHighScoreResult.loading ? (
+          <div>Loading</div>
+        ) : (
+          <div>{userHighScoreResult.data?.user?.higherLowerGameHighestScore}</div>
+        )}
+        <h1 className="text-3xl font-bold text-center pt-8">
+          Welcome to the Higher Lower Game!
+
+        </h1>
+        {gameOver ? (
+          <div className="mt-8 text-center">
+            <h2 className="text-2xl font-bold mb-4">Game Over!</h2>
+            <p className="text-xl">Your score: {score}</p>
+            <div className="justify-center mt-4 space-x-4">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded"
+                onClick={handleTryAgain}
+              >
+                Try Again
+              </button>
+              <Link
+                to="/"
+                className="px-4 py-2 bg-gray-500 font-bold text-white rounded"
+              >
+                Go Back to Main Menu
+              </Link>
+            </div>
           </div>
-        </div>
-      ) : (
-        <HigherLowerBody
-          heroOneId={heroOneId}
-          heroTwoId={heroTwoId}
-          heroOneResults={heroOneResults}
-          heroTwoResults={heroTwoResults}
-          powerStat={powerStat}
-          score={score}
-          winStreak={winStreak}
-          handleAnswer={handleAnswer}
-        />
-      )}
+        ) : (
+          <HigherLowerBody
+            heroOneId={heroOneId}
+            heroTwoId={heroTwoId}
+            heroOneResults={heroOneResults}
+            heroTwoResults={heroTwoResults}
+            powerStat={powerStat}
+            score={score}
+            winStreak={winStreak}
+            handleAnswer={handleAnswer}
+          />
+        )}
+      </div>
     </div>
   );
 }

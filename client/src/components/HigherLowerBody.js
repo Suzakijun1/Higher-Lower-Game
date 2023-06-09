@@ -11,7 +11,7 @@ const HigherLowerBody = ({
   handleAnswer,
 }) => {
   return (
-    <div className="mt-8">
+    <div className="mt-8  h-screen">
       <h2 className="text-2xl font-bold mb-4 text-center">
         Current Score: {score} / Win Streak: {winStreak}
       </h2>

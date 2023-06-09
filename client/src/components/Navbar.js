@@ -1,8 +1,8 @@
 import React, { useState, Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import Modal from "./Modal";
 import HelpModal from './HelpModal';
+import NavLogo from '../images/logo-no-background.png';
 
 
 const navigation = [
@@ -59,13 +59,13 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    src={NavLogo}
+                    alt="logo"
                   />
                   <img
                     className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    src={NavLogo}
+                    alt="logo"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -104,8 +104,8 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://cdn1.iconfinder.com/data/icons/avengers-1/512/avangers_icon003-512.png"
-                        alt=""
+                        src={NavLogo}
+                        alt="logo"
                       />
                     </Menu.Button>
                   </div>
@@ -119,13 +119,11 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
+                    <Menu.Item>
                         {({ active }) => (
                           <a
-                            data-modal-target="defaultModal"
-                            data-modal-toggle="defaultModal"
+                            href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            onClick={toggleModal}
                           >
                             Your Profile
                           </a>

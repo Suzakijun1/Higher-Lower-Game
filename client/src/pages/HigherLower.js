@@ -130,7 +130,7 @@ export default function HigherLower() {
 
   return (
     <div
-      className="bg-cover bg-center"
+      className="bg-cover bg-center pb-20"
       style={{
         backgroundImage: `url(${bgImage})`,
       }}

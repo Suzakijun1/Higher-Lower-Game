@@ -17,11 +17,7 @@ export default function HigherLower() {
   
   const [updateHighScore] = useMutation(UPDATE_HIGHSCORE);
   
-  const userHighScoreResult = useQuery(USER_HIGHSCORE, {
-    variables: {
-      username: "testing123",
-    },
-  });
+  const userHighScoreResult = useQuery(USER_HIGHSCORE);
 
 
   const heroOneResults = useQuery(HERO_IMG, {
@@ -84,8 +80,7 @@ export default function HigherLower() {
       //Use mutation to update highscore in db
       await updateHighScore({
         variables: {
-          streak: score,
-          username: "testing123",
+          streak: score
         },
       })
     }

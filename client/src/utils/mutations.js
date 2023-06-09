@@ -20,9 +20,8 @@ export const LOGIN_USER = gql`
   }
 `;
 export const UPDATE_HIGHSCORE = gql`
-  mutation Mutation($streak: Int!, $username: String!) {
-  updateHigherLowerHighestScore(streak: $streak, username: $username) {
-    username
+  mutation Mutation($streak: Int!) {
+  updateHigherLowerHighestScore(streak: $streak) {
     higherLowerGamesPlayed
     higherLowerGameHighestScore
   }

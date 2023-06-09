@@ -112,10 +112,7 @@ const DraftBody = (props) => {
   }
 
   return (
-    <div
-      className="flex flex-col items-center mt-10 h-screen"
-      
-    >
+    <div className="flex flex-col items-center mt-10 h-screen">
       {/* HEADING */}
       <h1 className="text-2xl font-bold mb-4">Pick One</h1>
 

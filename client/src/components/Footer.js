@@ -1,11 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+// import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
-const mailIcon = (
-  <FontAwesomeIcon icon={faEnvelope} className="text-black text-2xl" />
-);
+// const userIcon = (
+//   <FontAwesomeIcon icon={faUser} className="text-black text-2xl" />
+// );
 
 const gitHub = (
   <FontAwesomeIcon icon={faGithub} className="text-black text-2xl" />

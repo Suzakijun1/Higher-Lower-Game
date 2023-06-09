@@ -19,10 +19,26 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  higherLowerGamesPlayed: {
+    type: Number,
+    default: 0,
+  },
   higherLowerGameHighestScore: {
     type: Number,
     default: 0,
   },
+  draftGamesPlayed: {
+    type: Number,
+    default: 0,
+  },
+  draftGameWins: {
+    type: Number,
+    default: 0,
+  },
+  draftGameLosses: {
+    type: Number,
+    default: 0,
+  }
 });
 
 userSchema.pre("save", async function (next) {

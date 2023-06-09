@@ -5,6 +5,7 @@ import HelpModal from './HelpModal';
 import NavLogo from '../images/logo-no-background.png';
 import { Link } from "react-router-dom";
 import YourProfile from '../pages/YourProfile';
+import AccountNavLogo from '../images/account-logo-no-background.png';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -101,11 +102,11 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="flex rounded bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
-                        src={NavLogo}
+                        className="h-8 w-12"
+                        src={AccountNavLogo}
                         alt="logo"
                       />
                     </Menu.Button>

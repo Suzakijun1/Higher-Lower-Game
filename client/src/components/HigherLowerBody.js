@@ -17,7 +17,7 @@ const HigherLowerBody = ({
       </h2>
 
       <div className="mt-8 grid grid-cols-2 gap-8">
-        <div className="border border-gray-400 rounded-lg p-4 flex flex-col items-center">
+        <div className="border border-gray-400 rounded-lg p-4 flex flex-col items-center  shadow-lg shadow-blue-500/30">
           <h3 className="text-2xl font-bold mb-4">
             Hero One: {heroOneResults.data?.hero?.name}
           </h3>
@@ -30,7 +30,7 @@ const HigherLowerBody = ({
           )}
         </div>
 
-        <div className="border border-gray-400 rounded-lg p-4 flex flex-col items-center">
+        <div className="border border-gray-400 rounded-lg p-4 flex flex-col items-center shadow-lg shadow-blue-500/30">
           <h3 className="text-2xl font-bold mb-4">
             Hero Two: {heroTwoResults.data?.hero?.name}
           </h3>

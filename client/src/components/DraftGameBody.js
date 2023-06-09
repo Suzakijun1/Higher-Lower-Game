@@ -111,10 +111,7 @@ const DraftBody = (props) => {
   }
 
   return (
-    <div
-      className="flex flex-col items-center mt-10 h-screen"
-      
-    >
+    <div className="flex flex-col items-center mt-10 h-screen">
       {/* HEADING */}
       <h1 className="text-2xl font-bold mb-4">Pick One</h1>
 
@@ -131,7 +128,7 @@ const DraftBody = (props) => {
             </h3>
             <img
               onClick={() => onSelectHero(heroOneResults, heroTwoResults)}
-              className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/30 hover:outline outline-offset-2 outline-orange-600 hover:w-48 hover:h-48"
+              className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/30 hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48"
               src={heroOneResults.data.hero.image.url}
             ></img>
           </div>

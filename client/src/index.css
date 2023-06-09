@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 *{
-    color : rgb(8, 89, 182);
+    color : rgb(221, 245, 10);
     font-family: 'Bangers', serif;
     font-weight: 500;
 }

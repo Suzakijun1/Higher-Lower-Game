@@ -31,5 +31,3 @@ const Modal = ({ isOpen, onClose, wins, losses, totalGames,highestStreak, avgStr
 };
 
 export default Modal;
-
-//bg-red rounded-lg shadow-lg p-4 w-96 border-size px

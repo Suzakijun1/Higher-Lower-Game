@@ -146,7 +146,7 @@ export default function HigherLower() {
 
         </h1>
         {gameOver ? (
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-center h-screen">
             <h2 className="text-2xl font-bold mb-4">Game Over!</h2>
             <p className="text-xl">Your score: {score}</p>
             <div className="justify-center mt-4 space-x-4">

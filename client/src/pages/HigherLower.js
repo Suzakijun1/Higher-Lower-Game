@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import HigherLowerBody from "../components/HigherLowerBody";
 import { useQuery, useMutation } from "@apollo/client";
 import { HERO_IMG, USER_HIGHSCORE } from "../utils/queries";
-import { UPDATE_HIGH_SCORE } from "../utils/mutations";
+import { UPDATE_HIGHSCORE } from "../utils/mutations";
 import bgImage from "../images/battlegrounds-3.jpeg";
 
 export default function HigherLower() {
@@ -13,14 +13,12 @@ export default function HigherLower() {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [powerStat, setPowerStat] = useState("");
-  const [winStreak, setWinStreak] = useState(0);
+  const [highscore, setHighscore] = useState(0);
+  
+  const [updateHighScore] = useMutation(UPDATE_HIGHSCORE);
+  
+  const userHighScoreResult = useQuery(USER_HIGHSCORE);
 
-  const userHighScoreResult = useQuery(USER_HIGHSCORE, {
-    variables: {
-      username: "testing1234",
-    },
-  });
-  const [updateHighScore] = useMutation(UPDATE_HIGH_SCORE);
 
   const heroOneResults = useQuery(HERO_IMG, {
     variables: {
@@ -33,8 +31,7 @@ export default function HigherLower() {
     },
   });
 
-  useEffect(() => {
-    const initializeGame = async () => {
+  useEffect( () => {
       //Create an array of all possible ids
       let ids = [];
       for (let i = 1; i < 732; i++) {
@@ -60,15 +57,34 @@ export default function HigherLower() {
 
       //Set the new unseenIds array
       setUnseenIds(ids);
-    };
-    initializeGame();
   }, []);
+
   useEffect(() => {
     if (!gameOver) {
       setHeroTwoId(getRandomId(unseenIds));
       setPowerStat(getRandomPowerStat());
     }
   }, [unseenIds]);
+  
+  useEffect(() => {
+    if (userHighScoreResult.data) {
+      setHighscore(userHighScoreResult.data?.user?.higherLowerGameHighestScore);
+    }
+  }, [userHighScoreResult.data]);
+
+
+  //On game over 
+  useEffect(async () => {
+    if(score > highscore) {
+      setHighscore(score);
+      //Use mutation to update highscore in db
+      await updateHighScore({
+        variables: {
+          streak: score
+        },
+      })
+    }
+  }, [gameOver]);
 
   const handleAnswer = (answer) => {
     if (!powerStat || heroOneResults.loading || heroTwoResults.loading) {
@@ -79,7 +95,7 @@ export default function HigherLower() {
     const heroTwoPowerStat = heroTwoResults.data.hero.powerstats[powerStat];
 
     const isCorrect =
-      (answer === "higher" && heroTwoPowerStat > heroOnePowerStat) ||
+      (answer === "higher" && heroTwoPowerStat >= heroOnePowerStat) ||
       (answer === "lower" && heroTwoPowerStat < heroOnePowerStat);
 
     if (isCorrect) {
@@ -88,28 +104,8 @@ export default function HigherLower() {
       setUnseenIds((prevIds) => prevIds.filter((id) => id !== heroTwoId));
 
       // Check if the current score is higher than the win streak
-      setWinStreak((prevWinStreak) => {
-        const newWinStreak =
-          score + 1 > prevWinStreak ? score + 1 : prevWinStreak;
-        updateHighScore({
-          variables: {
-            highScore: newWinStreak,
-          },
-        })
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        return newWinStreak;
-      });
     } else {
       setGameOver(true);
-      if (score > winStreak) {
-        setWinStreak(score); // Update the win streak if the current score is higher
-      }
-      setWinStreak(0); // Reset the win streak
     }
   };
 
@@ -139,7 +135,7 @@ export default function HigherLower() {
         {userHighScoreResult.loading ? (
           <div>Loading</div>
         ) : (
-          <div>{userHighScoreResult.data?.user?.higherLowerGameHighestScore}</div>
+          <div>{highscore}</div>
         )}
         <h1 className="text-3xl font-bold text-center pt-8">
           Welcome to the Higher Lower Game!
@@ -172,7 +168,7 @@ export default function HigherLower() {
             heroTwoResults={heroTwoResults}
             powerStat={powerStat}
             score={score}
-            winStreak={winStreak}
+            highscore={highscore}
             handleAnswer={handleAnswer}
           />
         )}

@@ -7,14 +7,12 @@ const resolvers = {
     users: async () => {
       return User.find();
     },
-    user: async (parent, { email }) => {
-      return User.findOne({ email });
+    user: async (parent, args, context) => {
+      return User.findOne({ _id : context.user._id });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate(
-          "HigherLowerGameHighestScore"
-        );
+        return User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -58,18 +56,18 @@ const resolvers = {
 
       return { token, user };
     },
-    updateHighScore: async (parent, { highScore }, context) => {
+    updateHigherLowerHighestScore: async (parent, { streak }, context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { higherLowerGameHighestScore: highScore },
+        const updatedUser = await User.findOneAndUpdate(
+          { username : context.user.username },
+          { higherLowerGameHighestScore: streak },
           { new: true }
-        ).populate("HigherLowerGameHighestScore");
-
-        return updatedUser;
+          )
+          return updatedUser;
       }
-      throw new AuthenticationError("You need to be logged in!");
-    },
+
+      throw new AuthenticationError("Not Logged In!");
+    }
   },
 };
 

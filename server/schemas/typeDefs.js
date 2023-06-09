@@ -6,7 +6,11 @@ const typeDefs = gql`
     email: String
     username: String
     password: String
+    higherLowerGamesPlayed: Int
     higherLowerGameHighestScore: Int
+    draftGamesPlayed: Int
+    draftGameWins: Int
+    draftGameLosses: Int
   }
 
   type Auth {
@@ -73,14 +77,15 @@ const typeDefs = gql`
     heroes: [Hero]
     hero(id: String!): Hero
     users: [User]
-    user(username: String!): User
+    user: User
     me: User
   }
 
   type Mutation {
     addUser(email: String!, username: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
-    updateHighScore(highScore: Int!): User
+    updateHigherLowerHighestScore(streak: Int!): User
+    updateDraftGameStats(won: Boolean!): User
   }
 `;
 

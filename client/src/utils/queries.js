@@ -21,9 +21,25 @@ export const HERO_IMG = gql`
 `;
 
 export const USER_HIGHSCORE = gql`
-query User($username: String!) {
-  user(username: $username) {
+query User {
+  user{
     higherLowerGameHighestScore
+  }
+}
+`
+
+export const USER_DATA = gql`
+query Query {
+  me {
+    username
+    password
+    higherLowerGamesPlayed
+    higherLowerGameHighestScore
+    draftGamesPlayed
+    draftGameWins
+    draftGameLosses
+    email
+    _id
   }
 }
 `

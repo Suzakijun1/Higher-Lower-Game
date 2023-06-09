@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GameModesComponent from "../components/GameMode";
 import Footer from "../components/Footer";
 import bgImage from "../images/battlegrounds-1.jpeg";
-
+import { useQuery } from "@apollo/client";
+import { USER_DATA } from "../utils/queries";
 
 
 export default function Home() {
+  const {loading, data} = useQuery(USER_DATA)
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
   return (
     <div
       className="bg-cover bg-center"

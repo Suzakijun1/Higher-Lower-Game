@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import DraftGame from "./pages/DraftGame";
 import HigherLower from "./pages/HigherLower";
+import YourProfile from "./pages/YourProfile";
 
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
@@ -51,6 +52,7 @@ function App() {
             <Route path="/higherlower" element={<HigherLower />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<YourProfile />} />
           </Routes>
         </div>
         <Footer/>

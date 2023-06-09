@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function DraftBattleBody({ teamOne, teamTwo }) {
     //Player One Object State
+    const [currentAction, setCurrentAction] = useState('')
     const [playerOne, setPlayerOne] = useState({
         name: "Player 1",
         health: 0,
@@ -114,7 +115,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
                 //Check if damage is done
                 let opposingHeroStr = Number(opposingHero.data.hero.powerstats.strength);
                 let actingHeroStr = Number(actingHero.data.hero.powerstats.strength)
-                if (opposingHero.data.hero.powerstats.strength >= actingHero.data.hero.powerstats.strength) {
+                if (opposingHeroStr >= actingHeroStr) {
                     console.log("We DID IT!")
                     setTimeout(() => {
                         setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
@@ -190,12 +191,12 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
         let p1health = teamOne.reduce(getDur, 0);
         setPlayerOne({
             ...playerOne,
-            health: p1health
+            health: 50
         });
         let p2health = teamTwo.reduce(getDur, 0);
         setPlayerTwo({
             ...playerTwo,
-            health: p2health
+            health: 50
         });
         //Set the computers prompt to a random one
         setCurrentPrompt(battlePrompts[Math.floor(Math.random() * battlePrompts.length)]);
@@ -226,7 +227,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
     }, [playerTurn])
 
     return (
-        <div>
+        (playerOne.health > 0 && playerTwo.health > 0) ? <div>
             <h1 className="text-3xl font-bold text-center mt-8">{playerTurn ? "Your Turn" : "Enemy Turn"}</h1>
             <div className='flex justify-between my-12 mx-9'>
                 <h1>Player One Health: {playerOne.health}</h1>
@@ -269,6 +270,6 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
                     })
                 }
             </div>
-        </div>
+        </div> : <div>Game Over</div>
     )
 }

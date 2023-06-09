@@ -131,7 +131,7 @@ const DraftBody = (props) => {
             </h3>
             <img
               onClick={() => onSelectHero(heroOneResults, heroTwoResults)}
-              className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/30 hover:outline outline-offset-2 outline-orange-600 hover:w-48 hover:h-48"
+              className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/50 hover:outline outline-offset-2 outline-orange-600 hover:w-48 hover:h-48"
               src={heroOneResults.data.hero.image.url}
             ></img>
           </div>
@@ -148,7 +148,7 @@ const DraftBody = (props) => {
             </h3>
             <img
               onClick={() => onSelectHero(heroTwoResults, heroOneResults)}
-              className="w-40 h-40 my-3 rounded shadow-lg shadow-blue-500/30 min-w-full hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48"
+              className="w-40 h-40 my-3 rounded shadow-lg shadow-blue-500/50 min-w-full hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48"
               src={heroTwoResults.data.hero.image.url}
             ></img>
           </div>

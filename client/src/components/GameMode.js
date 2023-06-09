@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const GameModesComponent = () => {
   return (
     <div className="flex flex-col items-center mt-20 h-screen">
-      <div className="p-6 rounded-lg border border-gray-400 w-80 shadow-lg shadow-blue-500/30 ">
+      <div className="p-6 bg-gray-800 bg-opacity-60 rounded-lg border border-gray-400 w-80 shadow-xl shadow-blue-500/70 ">
         <h1 className="text-2xl font-bold mb-4 text-center">Game Modes</h1>
         <div className="flex flex-col gap-4 px-10">
           <Link

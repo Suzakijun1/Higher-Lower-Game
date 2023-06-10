@@ -8,7 +8,7 @@ import bgImage from "../images/battlegrounds-1.jpeg";
 export default function Home() {
   return (
     <div
-      className="bg-cover bg-center"
+      className="bg-cover bg-center tracking-widest"
       style={{
         backgroundImage: `url(${bgImage})`,
       }}

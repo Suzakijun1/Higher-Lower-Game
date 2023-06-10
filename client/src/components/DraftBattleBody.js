@@ -260,49 +260,75 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
   }, [gameOver])
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-center mt-8">{playerTurn ? "Your Turn" : "Enemy Turn"}</h1>
-      <div className='flex justify-between my-12 mx-9'>
+    <div className="h-screen tracking-widest heading">
+      <h1 className="text-3xl font-bold text-center mt-8">
+        {playerTurn ? "Your Turn" : "Enemy Turn"}
+      </h1>
+      <div className="flex justify-between my-12 mx-9 mb-5">
         <h1>Player One Health: {playerOne.health}</h1>
         {currentEnemyHero.loading ? (
           "Loading"
         ) : (
-          <div>
-            <h3 id="current-action">{currentAction}</h3>
+          <div className="flex flex-col items-center justify-center">
+            <h3 id="current-action" className="mb-7">
+              {currentAction}
+            </h3>
             <img
-              className="w-40 h-40 rounded"
+              className="w-40 h-40 rounded shadow-lg shadow-blue-500/50"
               src={currentEnemyHero.data.hero.image.url}
             />
           </div>
         )}
         <h1>Player Two Health: {playerTwo.health}</h1>
       </div>
-      {!gameOver ? <div className='flex flex-col items-center pb-14'>
-        {!selectingPrompt ? teamOne.map((heroResult) => {
-          return (
-            <div className="flex items-center mt-4">
-              <img
-                className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
-                onClick={() => currentPrompt.resolvePrompt(playerTurn ? playerOne : playerTwo, playerTurn ? playerTwo : playerOne, heroResult, currentEnemyHero)}
-                src={heroResult.data.hero.image.url}
-              ></img>
-              <span className="ml-2">{heroResult.data.hero.name}</span>
-            </div>
-          );
-        }) :
-          battlePrompts.map((prompt) => {
-            return (
-              <div className="flex items-center mt-4">
-                <button onClick={() => {
-                  setCurrentPrompt(prompt);
-                  setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
-                }
-                } className="bg-red-500 border-stone-800 p-4 rounded">{prompt.generateButtonPrompt(playerOne.name, playerTwo.name)}</button>
-              </div>
-            )
-          })}
-
-      </div> : <div className='flex text-center'>GAME OVER YOU DIED AND YOU SUCK</div>}
+      {!gameOver ? (
+        <div className="flex flex-row justify-center">
+          <div className="flex flex-col pb-14 ">
+            {!selectingPrompt
+              ? teamOne.map((heroResult) => {
+                  return (
+                    <div className="flex items-center mt-4">
+                      <img
+                        className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
+                        onClick={() =>
+                          currentPrompt.resolvePrompt(
+                            playerTurn ? playerOne : playerTwo,
+                            playerTurn ? playerTwo : playerOne,
+                            heroResult,
+                            currentEnemyHero
+                          )
+                        }
+                        src={heroResult.data.hero.image.url}
+                      ></img>
+                      <span className="ml-2">{heroResult.data.hero.name}</span>
+                    </div>
+                  );
+                })
+              : battlePrompts.map((prompt) => {
+                  return (
+                    <div className="flex items-center mt-4">
+                      <button
+                        onClick={() => {
+                          setCurrentPrompt(prompt);
+                          setSelectingPrompt(
+                            (prevSelectingPrompt) => !prevSelectingPrompt
+                          );
+                        }}
+                        className="bg-red-500 border-stone-800 p-4 rounded"
+                      >
+                        {prompt.generateButtonPrompt(
+                          playerOne.name,
+                          playerTwo.name
+                        )}
+                      </button>
+                    </div>
+                  );
+                })}
+          </div>
+        </div>
+      ) : (
+        <div className="flex text-center">GAME OVER YOU DIED AND YOU SUCK</div>
+      )}
     </div>
-  )
+  );
 }

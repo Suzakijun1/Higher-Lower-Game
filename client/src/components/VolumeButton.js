@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
 
 const VolumeButton = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -37,17 +39,25 @@ const VolumeButton = () => {
   }, [volume]);
 
   return (
-    <div className="relative inline-block">
-      <button
+    <div className="inline-block">
+      <div className="flex cursor-pointer ml-3" onClick={handleToggleDropdown}>
+        <div>
+          <FontAwesomeIcon className="mx-3" icon={faMusic} />
+        </div>
+
+        {isDropdownOpen ? "Volume" : isMuted ? "Unmute" : "Music"}
+      </div>
+
+      {/* <button
         type="button"
         className="px-4 py-2 bg-blue-500 text-white rounded-md"
         onClick={handleToggleDropdown}
       >
         {isDropdownOpen ? "Volume" : isMuted ? "Unmute" : "Music"}
-      </button>
+      </button> */}
 
       {isDropdownOpen && (
-        <div className="absolute top-full mt-2 bg-white border border-gray-300 rounded-md shadow-md">
+        <div className="absolute text-center pb-2 px-2 top-full mt-2 bg-gray-800 bg-opacity-60 border border-gray-500 rounded-md shadow-md">
           <input
             type="range"
             min="0"

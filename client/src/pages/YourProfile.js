@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Profile from "../components/Profile";
 import Footer from "../components/Footer";
-import { useQuery } from "@apollo/client";
+import { useQuery} from "@apollo/client";
 import { USER_DATA } from "../utils/queries";
 import bgImage from "../images/battlegrounds-14.jpeg";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -24,6 +25,9 @@ export default function YourProfile() {
 
   const { loading, data } = useQuery(USER_DATA)
 
+  useEffect(() => {
+  
+  }, [])
   useEffect(() => {
     setUserData((prevUserData) => {
       return {

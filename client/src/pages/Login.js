@@ -45,14 +45,16 @@ function Login() {
       }}
     >
       <div className="flex justify-end pt-4 mb-40">
-        <Link to="/signup" className="text-blue-500 mr-6">
+        <Link to="/signup" className="text-blue-500 mr-6 tracking-widest">
           ← Go to Signup
         </Link>
       </div>
 
       <div className="flex justify-center items-start h-screen mt-1 w-full">
         <div className="mt-20 bg-center bg-gray-800 bg-opacity-60 w-full max-w-md border border-gray-300 rounded-lg shadow-lg p-8">
-          <h2 className="text-3xl font-bold mb-4 text-center">Login</h2>
+          <h2 className="text-3xl font-bold mb-4 text-center tracking-widest">
+            Login
+          </h2>
           <form onSubmit={handleFormSubmit} className="text-center">
             <div className="mb-4">
               {/* <label htmlFor="username" className="block font-semibold mb-2">
@@ -64,7 +66,7 @@ function Login() {
                   name="username"
                   type="username"
                   id="username"
-                  className="pl-6 border border-gray-300 px-3 py-2 rounded w-full"
+                  className="tracking-widest pl-6 border border-gray-300 px-3 py-2 rounded w-full"
                   onChange={handleChange}
                 />
               </div>
@@ -80,7 +82,7 @@ function Login() {
                   name="password"
                   type="password"
                   id="password"
-                  className="pl-6 border border-gray-300 px-3 py-2 rounded w-full"
+                  className=" tracking-widest pl-6 border border-gray-300 px-3 py-2 rounded w-full"
                   onChange={handleChange}
                 />
               </div>

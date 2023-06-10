@@ -57,10 +57,32 @@ const resolvers = {
       return { token, user };
     },
     updateHigherLowerHighestScore: async (parent, { streak }, context) => {
+      console.log("Played game")
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { username : context.user.username },
-          { higherLowerGameHighestScore: streak },
+          { 
+            higherLowerGameHighestScore: streak,
+            $inc : { 'higherLowerGamesPlayed' : 1 }
+          },
+          { new: true }
+          )
+          return updatedUser;
+      }
+
+      throw new AuthenticationError("Not Logged In!");
+    },
+    updateDraftGameStats: async (parent, { won }, context) => {
+      if (context.user) {
+        const win = won ? 1 : 0;
+        const loss = won ? 0 : 1;
+        const updatedUser = await User.findOneAndUpdate(
+          { username : context.user.username },
+          { 
+            $inc : { draftGamesPlayed : 1 },
+            $inc : { draftGameWins : win },
+            $inc : { draftGameLosses : loss }
+          },
           { new: true }
           )
           return updatedUser;

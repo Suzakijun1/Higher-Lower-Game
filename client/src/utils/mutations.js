@@ -19,11 +19,11 @@ export const LOGIN_USER = gql`
     }
   }
 `;
-export const UPDATE_HIGH_SCORE = gql`
-  mutation UpdateHighScore($highScore: Int!) {
-    updateHighScore(highScore: $highScore) {
-      _id
-      higherLowerGameHighestScore
-    }
+export const UPDATE_HIGHSCORE = gql`
+  mutation Mutation($streak: Int!) {
+  updateHigherLowerHighestScore(streak: $streak) {
+    higherLowerGamesPlayed
+    higherLowerGameHighestScore
   }
+}
 `;

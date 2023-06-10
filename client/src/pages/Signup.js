@@ -38,7 +38,7 @@ function Signup(props) {
         </Link>
       </div>
 
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen w-full">
         <div className="w-full max-w-md  border border-gray-300 rounded-lg shadow-lg p-8">
           <h2 className="text-3xl font-bold mb-4 text-center">Signup</h2>
           <form onSubmit={handleFormSubmit}>

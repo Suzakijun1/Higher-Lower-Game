@@ -18,6 +18,7 @@ const DraftBody = (props) =>
       heroId: props.heroOneId + "",
     },
   });
+  
   const heroTwoResults = useQuery(HERO_IMG, {
     variables: {
       heroId: props.heroTwoId + "",

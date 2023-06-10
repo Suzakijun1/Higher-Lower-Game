@@ -7,13 +7,13 @@ const HigherLowerBody = ({
   heroTwoResults,
   powerStat,
   score,
-  winStreak,
+  highscore,
   handleAnswer,
 }) => {
   return (
     <div className="mt-8  h-screen">
       <h2 className="tracking-widest heading-3 text-2xl font-bold mb-4 text-center">
-        Current Score: {score} / Win Streak: {winStreak}
+        Current Score: {score} / Highscore: {highscore}
       </h2>
 
       <div className="mt-8 grid grid-cols-2 gap-4 ">

@@ -239,7 +239,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
             <div>
               <h3 id="result"></h3>
               <img
-                className="w-40 h-40 rounded"
+                className="w-40 h-40 rounded ml-12"
                 src={currentEnemyHero.data.hero.image.url}
               />
             </div>

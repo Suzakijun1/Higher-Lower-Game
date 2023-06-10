@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
+import bgImage from "../images/battlegrounds-14.jpeg";
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: "", username: "", password: "" });
@@ -37,6 +38,10 @@ function Signup(props) {
           ← Go to Login
         </Link>
       </div>
+
+
+
+
 
       <div className="flex justify-center items-center h-screen w-full">
         <div className="w-full max-w-md  border border-gray-300 rounded-lg shadow-lg p-8">

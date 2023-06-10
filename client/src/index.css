@@ -14,7 +14,7 @@
 
 .hero-name, .heading {
   /* text-shadow:1px 1px 20px black; */
-  text-shadow: -1px 0 blue, 0 1px blue, 1px 0 blue, 0 -1px blue;
+  text-shadow: -1px 0 rgba(0, 0, 255, 0.5), 0 1px rgba(0, 0, 255, 0.5), 1px 0 rgba(0, 0, 255, 0.5), 0 -1px rgba(0, 0, 255, 0.5);
 }
 
 .heading-2 {

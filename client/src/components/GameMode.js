@@ -28,7 +28,7 @@ return (
 
           <Link
             to="/higherlower"
-            className="flex space-x-2 bg-green-500 text-center text-white font-bold py-2 px-4 mb-5 rounded"
+            className="flex space-x-6 bg-green-500 text-center text-white font-bold py-2 px-4 mb-5 rounded"
             onClick={playSound}
           >
             <span className="ml-1 pt-3 text-xl">Higher/Lower</span>

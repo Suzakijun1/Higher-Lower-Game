@@ -151,7 +151,9 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Log up
+
+                            Log In
+
                           </a>
                         )}
                       </Menu.Item>
@@ -177,7 +179,7 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Sign out
+                            Log Out
                           </a>
                         )}
                       </Menu.Item>

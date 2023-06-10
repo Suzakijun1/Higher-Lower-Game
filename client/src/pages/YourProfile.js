@@ -23,11 +23,12 @@ export default function YourProfile() {
     
   })
 
-  const { loading, data } = useQuery(USER_DATA)
+  const { loading, data , refetch} = useQuery(USER_DATA)
 
   useEffect(() => {
-  
+    refetch();
   }, [])
+  
   useEffect(() => {
     setUserData((prevUserData) => {
       return {

@@ -12,13 +12,13 @@ const HigherLowerBody = ({
 }) => {
   return (
     <div className="mt-8  h-screen">
-      <h2 className="text-2xl font-bold mb-4 text-center">
+      <h2 className="tracking-widest heading-3 text-2xl font-bold mb-4 text-center">
         Current Score: {score} / Win Streak: {winStreak}
       </h2>
 
       <div className="mt-8 grid grid-cols-2 gap-4 ">
         <div className="bg-gray-800 bg-opacity-60 border border-gray-400 rounded-lg p-4 flex flex-col items-center  shadow-xl shadow-blue-500/50 col-span-1">
-          <h3 className="text-2xl font-bold mb-4">
+          <h3 className="tracking-widest heading-3 text-2xl font-bold mb-4">
             Hero One: {heroOneResults.data?.hero?.name}
           </h3>
           {heroOneResults.data && heroOneResults.data.hero && (
@@ -30,7 +30,7 @@ const HigherLowerBody = ({
           )}
         </div>
 
-        <div className="bg-gray-800 bg-opacity-60 bg-opacity-60 border border-gray-400 rounded-lg p-4 flex flex-col items-center shadow-xl shadow-blue-500/50">
+        <div className="tracking-widest heading-3 bg-gray-800 bg-opacity-60 bg-opacity-60 border border-gray-400 rounded-lg p-4 flex flex-col items-center shadow-xl shadow-blue-500/50">
           <h3 className="text-2xl font-bold mb-4">
             Hero Two: {heroTwoResults.data?.hero?.name}
           </h3>
@@ -45,19 +45,19 @@ const HigherLowerBody = ({
 
           <div className="flex gap-4">
             <button
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+              className="tracking-widest heading-3 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleAnswer("higher")}
             >
               Higher
             </button>
             <button
-              className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+              className="tracking-widest heading-3 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleAnswer("lower")}
             >
               Lower
             </button>
           </div>
-          <p className="text-lg mt-4">
+          <p className="heading-3 text-lg mt-4 tracking-wide">
             Choose whether the{" "}
             <strong className="font-bold">{powerStat}</strong> of Hero Two is
             higher or lower than Hero One.

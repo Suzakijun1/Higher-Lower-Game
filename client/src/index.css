@@ -2,25 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    color : rgb(8, 89, 182);
-    font-family: 'Bangers', serif;
-    font-weight: 500;
+* {
+  color: rgb(8, 89, 182);
+  font-family: "Bangers", serif;
+  font-weight: 500;
 }
 
 .hero-img {
-    box-shadow: 0 0 15px #0e86e9b7;
+  box-shadow: 0 0 15px #0e86e9b7;
 }
 
-.hero-name, .heading {
+.hero-name,
+.heading {
   /* text-shadow:1px 1px 20px black; */
-  text-shadow: -1px 0 rgba(0, 0, 255, 0.5), 0 1px rgba(0, 0, 255, 0.5), 1px 0 rgba(0, 0, 255, 0.5), 0 -1px rgba(0, 0, 255, 0.5);
+  text-shadow: -1px 0 rgba(0, 0, 255, 0.5), 0 1px rgba(0, 0, 255, 0.5),
+    1px 0 rgba(0, 0, 255, 0.5), 0 -1px rgba(0, 0, 255, 0.5);
 }
 
 .heading-2 {
-  text-shadow:1px 1px 30px white;
+  text-shadow: 1px 1px 30px white;
 }
 
 .heading-3 {
-  text-shadow:1px 1px 20px black;
+  text-shadow: 1px 1px 20px black;
+}
+
+.user-wrapper {
+  display: inline-block;
+  position: relative;
+}
+.user-wrapper:after {
+  font-family: "FontAwesome";
+  content: "\f007";
+  position: absolute;
+  left: 6px;
+  padding-top: 7px;
+}
+
+.pw-wrapper {
+  display: inline-block;
+  position: relative;
+}
+.pw-wrapper:after {
+  font-family: "FontAwesome";
+  content: "\f084";
+  position: absolute;
+  left: 6px;
+  padding-top: 7px;
 }

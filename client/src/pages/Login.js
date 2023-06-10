@@ -3,6 +3,12 @@ import { Link, Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
+const userIcon = (
+  <FontAwesomeIcon icon={faUser} className="text-black text-2xl" />
+);
 
 function Login() {
   const [formState, setFormState] = useState({ username: "", password: "" });
@@ -46,28 +52,32 @@ function Login() {
               <label htmlFor="username" className="block font-semibold mb-2">
                 Username:
               </label>
-              <input
-                placeholder="Username"
-                name="username"
-                type="username"
-                id="username"
-                className="border border-gray-300 px-3 py-2 rounded w-full"
-                onChange={handleChange}
-              />
+              <div class="user-wrapper">
+                <input
+                  placeholder="username"
+                  name="username"
+                  type="username"
+                  id="username"
+                  className="border border-gray-300 px-3 py-2 pl-6 rounded w-full"
+                  onChange={handleChange}
+                />
+              </div>
             </div>
 
             <div className="mb-6">
               <label htmlFor="password" className="block font-semibold mb-2">
                 Password:
               </label>
-              <input
-                placeholder="******"
-                name="password"
-                type="password"
-                id="password"
-                className="border border-gray-300 px-3 py-2 rounded w-full"
-                onChange={handleChange}
-              />
+              <div class="pw-wrapper">
+                <input
+                  placeholder="password"
+                  name="password"
+                  type="password"
+                  id="password"
+                  className="border border-gray-300 pl-6 py-2 rounded w-full"
+                  onChange={handleChange}
+                />
+              </div>
             </div>
 
             <div className="flex justify-end">

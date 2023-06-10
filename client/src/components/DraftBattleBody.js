@@ -254,7 +254,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
                 )}
                 <h1>Player Two Health: {playerTwo.health}</h1>
             </div>
-            {!gameOver ? <div className='flex flex-col items-center'>
+            {!gameOver ? <div className='flex flex-col items-center pb-14'>
                 {!selectingPrompt ? teamOne.map((heroResult) => {
                     return (
                         <div className="flex items-center mt-4">

@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
-import soundtrack from "../sounds/alex-productions-epic-cinematic-trailer-elite.mp3";
+
 
 // const userIcon = (
 //   <FontAwesomeIcon icon={faUser} className="text-black text-2xl" />

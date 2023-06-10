@@ -184,6 +184,7 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+              <VolumeButton />
               </div>
             </div>
           </div>

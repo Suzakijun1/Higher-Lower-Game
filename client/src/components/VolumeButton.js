@@ -39,12 +39,12 @@ const VolumeButton = () => {
   }, [volume]);
 
   return (
-    <div className="relative inline-block">
-      <div className="flex cursor-pointer ml-3" onClick={ handleToggleDropdown }>
+    <div className="inline-block">
+      <div className="flex cursor-pointer ml-3" onClick={handleToggleDropdown}>
         <div>
           <FontAwesomeIcon className="mx-3" icon={faMusic} />
         </div>
-        
+
         {isDropdownOpen ? "Volume" : isMuted ? "Unmute" : "Music"}
       </div>
 
@@ -57,7 +57,7 @@ const VolumeButton = () => {
       </button> */}
 
       {isDropdownOpen && (
-        <div className="absolute top-full mt-2 bg-white border border-gray-300 rounded-md shadow-md">
+        <div className="absolute text-center pb-2 px-2 top-full mt-2 bg-gray-800 bg-opacity-60 border border-gray-500 rounded-md shadow-md">
           <input
             type="range"
             min="0"

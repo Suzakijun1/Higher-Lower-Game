@@ -113,7 +113,7 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                     <Menu.Button className="flex rounded bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-12"
+                       className="h-8 w-12"
                         src={AccountNavLogo}
                         alt="logo"
                       />
@@ -151,7 +151,7 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Sign up
+                            Log up
                           </a>
                         )}
                       </Menu.Item>
@@ -164,7 +164,7 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Sign in
+                            Sign Up
                           </a>
                         )}
                       </Menu.Item>

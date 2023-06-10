@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import soundtrack from "../sounds/alex-productions-epic-cinematic-trailer-elite.mp3";
 
 // const userIcon = (
 //   <FontAwesomeIcon icon={faUser} className="text-black text-2xl" />
@@ -33,16 +34,15 @@ export default function Footer() {
               {gitHub} Powered by SuperHero API
             </a>
           </li>
-          {/* <li className="p-3">
-            <a
-              href=""
-              target="_blank"
-            >
-              {linkedIn}
-            </a>
-          </li> */}
         </ul>
       </div>
+      <audio
+        className="h-15 w-40 "
+        controls
+        loop
+        src={require("../sounds/alex-productions-epic-cinematic-trailer-elite.mp3")}
+        type="audio/mpeg"
+      />
     </div>
   );
 }

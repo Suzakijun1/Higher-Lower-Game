@@ -2,9 +2,14 @@ import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { HERO_IMG } from "../utils/queries";
 import Divider from "./Divider";
+import soundFx from "../sounds/080953_semi-auto-pistol-39750.wav";
 
 
 const DraftBody = (props) => {
+  const playSound = () => {
+    new Audio(soundFx).play();
+  };
+
   const MAX_TEAM_SIZE = 5;
   const [draftRounds, setDraftRounds] = useState(0);
 
@@ -114,7 +119,7 @@ const DraftBody = (props) => {
   return (
     <div className="flex flex-col items-center mt-10 h-screen">
       {/* HEADING */}
-      <h1 className="text-2xl font-bold mb-4 tracking-widest">Pick One</h1>
+      <h1 className="heading text-2xl font-bold mb-4 tracking-widest">Pick One</h1>
 
       <div className="flex gap-6 mt-4">
         {/* ::::::::::::::::::::::::::::::::::::::::::::: */}
@@ -128,7 +133,10 @@ const DraftBody = (props) => {
               {heroOneResults.data.hero.name}
             </h3>
             <img
-              onClick={() => onSelectHero(heroOneResults, heroTwoResults)}
+              onClick={() => {
+                playSound();
+                onSelectHero(heroOneResults, heroTwoResults)
+              }}
               className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/50 hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48 "
               src={heroOneResults.data.hero.image.url}
             ></img>
@@ -145,7 +153,10 @@ const DraftBody = (props) => {
               {heroTwoResults.data.hero.name}
             </h3>
             <img
-              onClick={() => onSelectHero(heroTwoResults, heroOneResults)}
+              onClick={() => {
+                playSound();  
+                onSelectHero(heroTwoResults, heroOneResults)
+                }}
               className="w-40 h-40 my-3 rounded shadow-lg shadow-blue-500/50 min-w-full hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48"
               src={heroTwoResults.data.hero.image.url}
             ></img>
@@ -153,7 +164,7 @@ const DraftBody = (props) => {
         )}
       </div>
       {/* DIV FOR STATS */}
-      <div className="flex space-x-20 mt-3 mb-4">
+      <div className="heading flex space-x-20 mt-3 mb-4">
         {/* STATS PLAYER 1*/}
         <div class="container mx-auto tracking-widest">
           <div>
@@ -201,7 +212,7 @@ const DraftBody = (props) => {
         </div>
 
         {/* STATS PLAYER 2*/}
-        <div class="container mx-auto tracking-widest">
+        <div class="heading container mx-auto tracking-widest">
           <div>
             {props.teamTwo.length !== 0
               ? `Intelligence: ${Math.round(
@@ -254,7 +265,7 @@ const DraftBody = (props) => {
       <div className="flex gap-6 tracking-widest heading">
         {/* Left Column - Player */}
         <div className="flex flex-col ml-5">
-          <div className="w-100 h-100 text-center text-xl">Player 1</div>
+          <div className="w-100 h-100 text-xl">Player 1</div>
 
           {props.teamOne.map((heroResult) => {
             return (
@@ -272,12 +283,12 @@ const DraftBody = (props) => {
 
         {/* Left and right column divider "VS" */}
         <div className="pr-5 flex flex-col items-center justify-center">
-          <h2 className="heading-3 text-4xl font-bold text-gray-500">VS</h2>
+          <h2 className="heading text-4xl font-bold text-gray-500">VS</h2>
         </div>
 
         {/* Right Column - Computer */}
         <div className="flex flex-col">
-          <div className="w-100 h-100 text-center text-xl">Player 2</div>
+          <div className="w-100 h-100 text-xl">Player 2</div>
 
           <div className="w-100 h-100 bg-gray-200"></div>
           {props.teamTwo.map((heroResult) => {

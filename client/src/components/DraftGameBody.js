@@ -245,14 +245,15 @@ const DraftBody = (props) => {
           </div> */}
         </div>
       </div>
+      <div className="border mb-4 w-80 border-red-800/50"></div>
       {/* :::::::: Divider :::::::::: */}
       {/* <div>
         <Divider />
       </div> */}
       <div className="flex gap-6 tracking-widest heading">
         {/* Left Column - Player */}
-        <div className="flex flex-col">
-          <div className="w-100 h-100">Player 1</div>
+        <div className="flex flex-col ml-5">
+          <div className="w-100 h-100 text-center text-xl">Player 1</div>
 
           {props.teamOne.map((heroResult) => {
             return (
@@ -269,13 +270,13 @@ const DraftBody = (props) => {
         </div>
 
         {/* Left and right column divider "VS" */}
-        <div className="flex flex-col items-center justify-center">
-          <h2 className="text-4xl font-bold text-gray-500">VS</h2>
+        <div className="pr-5 flex flex-col items-center justify-center">
+          <h2 className="heading-3 text-4xl font-bold text-gray-500">VS</h2>
         </div>
 
         {/* Right Column - Computer */}
         <div className="flex flex-col">
-          <div className="w-100 h-100">Player 2</div>
+          <div className="w-100 h-100 text-center text-xl">Player 2</div>
 
           <div className="w-100 h-100 bg-gray-200"></div>
           {props.teamTwo.map((heroResult) => {

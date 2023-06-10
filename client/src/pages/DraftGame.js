@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import DraftBody from "../components/DraftGameBody";
 import DraftBattleBody from "../components/DraftBattleBody";
 import Footer from "../components/Footer";
-import bgImage from "../images/battlegrounds-5.jpeg";
+import bgImage from "../images/battlegrounds-9.jpeg";
 
 
 export default function Home() {

@@ -2,9 +2,14 @@ import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { HERO_IMG } from "../utils/queries";
 import Divider from "./Divider";
+import soundFx from "../sounds/080953_semi-auto-pistol-39750.wav";
 
+const DraftBody = (props) =>
+{
+  const playSound = () => {
+    new Audio(soundFx).play();
+  };
 
-const DraftBody = (props) => {
   const MAX_TEAM_SIZE = 5;
   const [draftRounds, setDraftRounds] = useState(0);
 
@@ -127,7 +132,11 @@ const DraftBody = (props) => {
               {heroOneResults.data.hero.name}
             </h3>
             <img
-              onClick={() => onSelectHero(heroOneResults, heroTwoResults)}
+                onClick={ () =>
+                {
+                  playSound();
+                  onSelectHero(heroOneResults, heroTwoResults)
+              }}
               className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/50 hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48 "
               src={heroOneResults.data.hero.image.url}
             ></img>
@@ -144,7 +153,11 @@ const DraftBody = (props) => {
               {heroTwoResults.data.hero.name}
             </h3>
             <img
-              onClick={() => onSelectHero(heroTwoResults, heroOneResults)}
+                onClick={ () =>
+                {
+                  playSound();
+                  onSelectHero(heroTwoResults, heroOneResults)
+              }}
               className="w-40 h-40 my-3 rounded shadow-lg shadow-blue-500/50 min-w-full hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48"
               src={heroTwoResults.data.hero.image.url}
             ></img>

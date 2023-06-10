@@ -23,15 +23,15 @@ return (
               src="https://www.superherodb.com/pictures2/portraits/10/100/85.jpg"
               alt="Description of the image"
             />
-            <span className="text-xl">Draft</span>
+            <span className="text-xl tracking-wide">Draft</span>
           </Link>
 
           <Link
             to="/higherlower"
-            className="flex space-x-2 bg-green-500 text-center text-white font-bold py-2 px-4 mb-5 rounded"
+            className="flex space-x-6 bg-green-500 text-center text-white font-bold py-2 px-4 mb-5 rounded"
             onClick={playSound}
           >
-            <span className="ml-1 pt-3 text-xl">Higher/Lower</span>
+            <span className="ml-1 pt-3 text-xl tracking-wide">Higher/Lower</span>
             <img
               className="w-12 h-12 bg-gray-200 rounded-full"
               src="https://www.superherodb.com/pictures2/portraits/10/100/842.jpg"

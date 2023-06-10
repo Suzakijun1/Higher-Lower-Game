@@ -68,7 +68,6 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                     alt="logo"
                   />
                 </div>
-                
 
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -76,11 +75,11 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                       <a
                         key={item.name}
                         href={item.href}
-                        className={classNames(
-                          item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
+                        className={classNames("mt-1"
+                          // item.current
+                          //   ? "bg-gray-900 rgb(221, 245, 10)"
+                          //   : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          // "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -186,7 +185,7 @@ export default function NavBar({ isModalOpen, setIsModalOpen }) {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-              <VolumeButton />
+                <VolumeButton />
               </div>
             </div>
           </div>

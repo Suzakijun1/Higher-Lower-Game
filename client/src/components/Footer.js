@@ -36,13 +36,6 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      <audio
-        className="h-15 w-40 "
-        controls
-        loop
-        src={require("../sounds/alex-productions-epic-cinematic-trailer-elite.mp3")}
-        type="audio/mpeg"
-      />
     </div>
   );
 }

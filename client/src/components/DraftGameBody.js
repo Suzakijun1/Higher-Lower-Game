@@ -113,7 +113,7 @@ const DraftBody = (props) => {
   return (
     <div className="flex flex-col items-center mt-10 h-screen">
       {/* HEADING */}
-      <h1 className="text-2xl font-bold mb-4 tracking-widest">Pick One</h1>
+      <h1 className="heading text-2xl font-bold mb-4 tracking-widest">Pick One</h1>
 
       <div className="flex gap-6 mt-4">
         {/* ::::::::::::::::::::::::::::::::::::::::::::: */}
@@ -152,7 +152,7 @@ const DraftBody = (props) => {
         )}
       </div>
       {/* DIV FOR STATS */}
-      <div className="flex space-x-20 mt-3 mb-4">
+      <div className="heading flex space-x-20 mt-3 mb-4">
         {/* STATS PLAYER 1*/}
         <div class="container mx-auto tracking-widest">
           <div>
@@ -200,7 +200,7 @@ const DraftBody = (props) => {
         </div>
 
         {/* STATS PLAYER 2*/}
-        <div class="container mx-auto tracking-widest">
+        <div class="heading container mx-auto tracking-widest">
           <div>
             {props.teamTwo.length !== 0
               ? `Intelligence: ${Math.round(
@@ -271,7 +271,7 @@ const DraftBody = (props) => {
 
         {/* Left and right column divider "VS" */}
         <div className="pr-5 flex flex-col items-center justify-center">
-          <h2 className="heading-3 text-4xl font-bold text-gray-500">VS</h2>
+          <h2 className="heading text-4xl font-bold text-gray-500">VS</h2>
         </div>
 
         {/* Right Column - Computer */}

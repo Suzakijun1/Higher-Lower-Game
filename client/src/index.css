@@ -7,3 +7,19 @@
     font-family: 'Bangers', serif;
     font-weight: 500;
 }
+
+.hero-img {
+    box-shadow: 0 0 15px #0e86e9b7;
+}
+
+.hero-name, .heading {
+  text-shadow:1px 1px 20px black;
+}
+
+.heading-2 {
+  text-shadow:1px 1px 30px white;
+}
+
+.heading-3 {
+  text-shadow:1px 1px 20px black;
+}

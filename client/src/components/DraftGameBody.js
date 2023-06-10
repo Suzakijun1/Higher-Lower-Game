@@ -114,7 +114,7 @@ const DraftBody = (props) => {
   return (
     <div className="flex flex-col items-center mt-10 h-screen">
       {/* HEADING */}
-      <h1 className="text-2xl font-bold mb-4">Pick One</h1>
+      <h1 className="text-2xl font-bold mb-4 tracking-widest">Pick One</h1>
 
       <div className="flex gap-6 mt-4">
         {/* ::::::::::::::::::::::::::::::::::::::::::::: */}
@@ -124,12 +124,12 @@ const DraftBody = (props) => {
           "Loading"
         ) : (
           <div>
-            <h3 className="my-2 mx-2 text-center w-40">
+            <h3 className="hero-name my-2 mx-2 text-center w-40 tracking-widest">
               {heroOneResults.data.hero.name}
             </h3>
             <img
               onClick={() => onSelectHero(heroOneResults, heroTwoResults)}
-              className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/50 hover:outline outline-offset-2 outline-orange-600 hover:w-48 hover:h-48"
+              className="w-40 h-40 my-3 rounded min-w-full shadow-lg shadow-blue-500/50 hover:outline outline-offset-2 outline-blue-500/50 hover:w-48 hover:h-48 "
               src={heroOneResults.data.hero.image.url}
             ></img>
           </div>
@@ -141,7 +141,7 @@ const DraftBody = (props) => {
           "Loading"
         ) : (
           <div>
-            <h3 className="my-2 mx-2 text-center w-40">
+            <h3 className="hero-name my-2 mx-2 text-center w-40 tracking-widest">
               {heroTwoResults.data.hero.name}
             </h3>
             <img
@@ -155,7 +155,7 @@ const DraftBody = (props) => {
       {/* DIV FOR STATS */}
       <div className="flex space-x-20 mt-3 mb-4">
         {/* STATS PLAYER 1*/}
-        <div class="container mx-auto">
+        <div class="container mx-auto tracking-widest">
           <div>
             {props.teamOne.length !== 0
               ? `Intelligence: ${Math.round(
@@ -201,7 +201,7 @@ const DraftBody = (props) => {
         </div>
 
         {/* STATS PLAYER 2*/}
-        <div class="container mx-auto">
+        <div class="container mx-auto tracking-widest">
           <div>
             {props.teamTwo.length !== 0
               ? `Intelligence: ${Math.round(
@@ -246,20 +246,21 @@ const DraftBody = (props) => {
           </div> */}
         </div>
       </div>
+      <div className="border mb-4 w-80 border-red-800/50"></div>
       {/* :::::::: Divider :::::::::: */}
       {/* <div>
         <Divider />
       </div> */}
-      <div className="flex gap-6">
+      <div className="flex gap-6 tracking-widest heading">
         {/* Left Column - Player */}
-        <div className="flex flex-col">
-          <div className="w-100 h-100">Player 1</div>
+        <div className="flex flex-col ml-5">
+          <div className="w-100 h-100 text-center text-xl">Player 1</div>
 
           {props.teamOne.map((heroResult) => {
             return (
               <div className="flex items-center mt-4">
                 <img
-                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
+                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/70 hover:w-32 hover:h-32"
                   src={heroResult.data.hero.image.url}
                 ></img>
                 <span className="ml-2">{heroResult.data.hero.name}</span>
@@ -270,20 +271,20 @@ const DraftBody = (props) => {
         </div>
 
         {/* Left and right column divider "VS" */}
-        <div className="flex flex-col items-center justify-center">
-          <h2 className="text-4xl font-bold text-gray-500">VS</h2>
+        <div className="pr-5 flex flex-col items-center justify-center">
+          <h2 className="heading-3 text-4xl font-bold text-gray-500">VS</h2>
         </div>
 
         {/* Right Column - Computer */}
         <div className="flex flex-col">
-          <div className="w-100 h-100">Player 2</div>
+          <div className="w-100 h-100 text-center text-xl">Player 2</div>
 
           <div className="w-100 h-100 bg-gray-200"></div>
           {props.teamTwo.map((heroResult) => {
             return (
               <div className="flex items-center mt-4">
                 <img
-                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
+                  className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-orange-500/70 hover:w-32 hover:h-32"
                   src={heroResult.data.hero.image.url}
                 ></img>
                 <span className="ml-2">{heroResult.data.hero.name}</span>

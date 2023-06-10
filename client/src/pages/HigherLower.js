@@ -137,7 +137,7 @@ export default function HigherLower() {
         ) : (
           <div>{highscore}</div>
         )}
-        <h1 className="text-3xl font-bold text-center pt-8">
+        <h1 className="heading-3 text-3xl font-bold text-center pt-8 tracking-widest">
           Welcome to the Higher Lower Game!
 
         </h1>

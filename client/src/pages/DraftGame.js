@@ -54,7 +54,7 @@ export default function Home() {
         backgroundImage: `url(${bgImage})`,
       }}
     >
-      <h1 className="text-3xl font-bold text-center pt-8">
+      <h1 className="heading text-3xl font-bold text-center pt-8 tracking-widest">
         Welcome to the Game!
       </h1>
       {isDrafting ? (

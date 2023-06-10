@@ -27,3 +27,13 @@ export const UPDATE_HIGHSCORE = gql`
   }
 }
 `;
+
+export const UPDATE_DRAFT_GAME_STATS = gql`
+mutation Mutation($won: Boolean!) {
+  updateDraftGameStats(won: $won) {
+    draftGamesPlayed
+    draftGameWins
+    draftGameLosses
+  }
+}
+`

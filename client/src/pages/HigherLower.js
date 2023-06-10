@@ -75,12 +75,18 @@ export default function HigherLower() {
 
   //On game over 
   useEffect(async () => {
-    if(score > highscore) {
+    if(score > highscore && gameOver === true) {
       setHighscore(score);
       //Use mutation to update highscore in db
       await updateHighScore({
         variables: {
           streak: score
+        },
+      })
+    } else if(gameOver === true && score <= highscore) {
+      await updateHighScore({
+        variables: {
+          streak: highscore
         },
       })
     }

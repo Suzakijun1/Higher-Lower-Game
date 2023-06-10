@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Profile from "../components/Profile";
 import Footer from "../components/Footer";
+import { useQuery } from "@apollo/client";
+import { USER_DATA } from "../utils/queries";
 import bgImage from "../images/battlegrounds-14.jpeg";
 
 
 
-export default function Home() {
+
+export default function YourProfile() {
+  const [userData, setUserData] = useState({
+    
+      me: {
+        username: "Loading",
+        higherLowerGamesPlayed: 0,
+        higherLowerGameHighestScore: 0,
+        draftGamesPlayed: 0,
+        draftGameWins: 0,
+        draftGameLosses: 0
+      }
+    
+  })
+
+  const { loading, data } = useQuery(USER_DATA)
+
+  useEffect(() => {
+    setUserData((prevUserData) => {
+      return {
+        ...prevUserData,
+        ...data
+      }
+    })
+  }, [data])
   return (
     <div
       className="bg-cover bg-center"
@@ -14,9 +40,11 @@ export default function Home() {
       }}
     >
       <h1 className="text-3xl font-bold text-center pt-20 sh-background-1">
-        Your Stats
+
       </h1>
-      <Profile />
+      <Profile 
+      userData = {userData}
+      />
     </div>
   );
 };

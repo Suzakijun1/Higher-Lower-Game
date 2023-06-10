@@ -50,3 +50,15 @@
   left: 6px;
   padding-top: 7px;
 }
+
+.email-wrapper {
+  display: inline-block;
+  position: relative;
+}
+.email-wrapper:after {
+  font-family: "FontAwesome";
+  content: "\f0e0";
+  position: absolute;
+  left: 6px;
+  padding-top: 7px;
+}

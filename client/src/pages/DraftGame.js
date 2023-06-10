@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import DraftBody from "../components/DraftGameBody";
 import DraftBattleBody from "../components/DraftBattleBody";
 import Footer from "../components/Footer";
-import bgImage from "../images/battlegrounds-5.jpeg";
+import bgImage from "../images/battlegrounds-9.jpeg";
 
 
 export default function Home() {
@@ -47,14 +47,13 @@ export default function Home() {
   }, [unseenIds]);
 
   return (
-
     <div
-      className="bg-cover bg-center"
+      className="bg-cover bg-center tracking-widest"
       style={{
         backgroundImage: `url(${bgImage})`,
       }}
     >
-      <h1 className="heading text-3xl font-bold text-center pt-8 tracking-widest">
+      <h1 className=" tracking-widest heading text-3xl font-bold text-center pt-8 tracking-widest">
         Welcome to the Game!
       </h1>
       {isDrafting ? (
@@ -71,11 +70,9 @@ export default function Home() {
           setTeamTwo={setTeamTwo}
           setIsDrafting={setIsDrafting}
         />
-      ) : <DraftBattleBody
-          teamOne={teamOne}
-          teamTwo={teamTwo}
-          />}
-
+      ) : (
+        <DraftBattleBody teamOne={teamOne} teamTwo={teamTwo} />
+      )}
     </div>
   );
 }

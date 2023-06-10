@@ -38,13 +38,13 @@ function Login() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex justify-end my-4">
+      <div className="flex justify-end my-1">
         <Link to="/signup" className="text-blue-500">
           ← Go to Signup
         </Link>
       </div>
 
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen mt-1">
         <div className="w-full max-w-md border border-gray-300 rounded-lg shadow-lg p-8">
           <h2 className="text-3xl font-bold mb-4 text-center">Login</h2>
           <form onSubmit={handleFormSubmit}>

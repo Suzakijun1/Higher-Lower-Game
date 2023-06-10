@@ -46,42 +46,51 @@ function Signup(props) {
               <label htmlFor="username" className="block font-semibold mb-2">
                 Username:
               </label>
-              <input
+              <div className="user-wrapper">
+                <input
                 placeholder="First"
                 name="username"
                 type="text"
                 id="username"
-                className="border border-gray-300 px-3 py-2 rounded w-full"
+                className="pl-6 border border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
+              </div>
+              
             </div>
 
             <div className="mb-4">
               <label htmlFor="email" className="block font-semibold mb-2">
                 Email:
               </label>
-              <input
+              <div className="email-wrapper">
+                <input
                 placeholder="youremail@test.com"
                 name="email"
                 type="email"
                 id="email"
-                className="border border-gray-300 px-3 py-2 rounded w-full"
+                className="pl-6 border border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
+              </div>
+              
             </div>
 
             <div className="mb-6">
               <label htmlFor="pwd" className="block font-semibold mb-2">
                 Password:
               </label>
-              <input
+              <div className="pw-wrapper">
+                <input
                 placeholder="******"
                 name="password"
                 type="password"
                 id="pwd"
-                className="border border-gray-300 px-3 py-2 rounded w-full"
+                className="pl-6 border border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
+              </div>
+              
             </div>
 
             <div className="flex justify-end">

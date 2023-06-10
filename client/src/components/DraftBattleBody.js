@@ -236,10 +236,10 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
           {currentEnemyHero.loading ? (
             "Loading"
           ) : (
-            <div>
-              <h3 id="result"></h3>
+            <div className="flex flex-col items-center justify-center">
+              <h3 id="result" className='mb-5'></h3>
               <img
-                className="w-40 h-40 rounded ml-12"
+                className="w-40 h-40 rounded shadow-lg shadow-blue-500/50 "
                 src={currentEnemyHero.data.hero.image.url}
               />
             </div>

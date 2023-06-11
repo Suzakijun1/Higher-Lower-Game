@@ -17,8 +17,7 @@ function Signup(props) {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      console.log(data.addUser.user)
-      Auth.login(data.addUser);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error("ERROR:", e);
     }

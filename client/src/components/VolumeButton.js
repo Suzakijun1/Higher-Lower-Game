@@ -35,8 +35,10 @@ const VolumeButton = () => {
   useEffect(() => {
     if (isMusicPlaying.current) {
       audioRef.current.play();
+    } else {
+      audioRef.current.pause();
     }
-  }, [volume]);
+  }, []);
 
   return (
     <div className="inline-block">
@@ -77,10 +79,12 @@ const VolumeButton = () => {
         </div>
       )}
 
-      <audio
-        ref={audioRef}
-        src="../sounds/alex-productions-epic-cinematic-trailer-elite.mp3"
-      ></audio>
+      <audio ref={audioRef} autoPlay>
+        <source
+          src="../sounds/alex-productions-epic-cinematic-trailer-elite.mp3"
+          type="audio/mpeg"
+        />
+      </audio>
     </div>
   );
 };

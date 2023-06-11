@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client';
-import { UPDATE_DRAFT_GAME_STATS } from '../utils/mutations';
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { UPDATE_DRAFT_GAME_STATS } from "../utils/mutations";
 
 export default function DraftBattleBody({ teamOne, teamTwo }) {
   //This will hold the mutation for the updating the db with the result of the game
   const [updateDraftGameStats] = useMutation(UPDATE_DRAFT_GAME_STATS);
   //Player One Object State
-  const [currentAction, setCurrentAction] = useState('')
-  const [gameOver, setGameOver] = useState(false)
+  const [currentAction, setCurrentAction] = useState("");
+  const [gameOver, setGameOver] = useState(false);
   const [playerOne, setPlayerOne] = useState({
     name: "Player 1",
     health: 1,
@@ -15,12 +15,11 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
       setPlayerOne((prevPlayerOne) => {
         return {
           ...prevPlayerOne,
-          health: prevPlayerOne.health - dmg
-        }
+          health: prevPlayerOne.health - dmg,
+        };
       });
-    }
-  })
-
+    },
+  });
 
   //Player Two Object State
   const [playerTwo, setPlayerTwo] = useState({
@@ -30,11 +29,11 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
       setPlayerTwo((prevPlayerTwo) => {
         return {
           ...prevPlayerTwo,
-          health: prevPlayerTwo.health - dmg
-        }
+          health: prevPlayerTwo.health - dmg,
+        };
       });
-    }
-  })
+    },
+  });
   //This indicates whose turn to attack is
   const [playerTurn, setPlayerTurn] = useState(false);
 
@@ -44,15 +43,15 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
   //Current Prompt Indicates the action that want to be taken once we decide on the heroes
   const [currentPrompt, setCurrentPrompt] = useState({
     generatePrompt: (actingPlayer, opposingPlayer) => {
-      return ("No Prompt")
+      return "No Prompt";
     },
     generateButtonPrompt: (actingPlayer, opposingPlayer) => {
-      return ("No Prompt")
+      return "No Prompt";
     },
     resolvePrompt: (actingPlayer, oposingPlayer, actingHero, opposingHero) => {
-      return ("No resolution")
+      return "No resolution";
     },
-    type: ""
+    type: "",
   });
 
   const [currentEnemyHero, setCurrentEnemyHero] = useState({
@@ -66,36 +65,46 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
           durability: "",
         },
         image: {
-          url: ""
-        }
-      }
-    }
-  })
+          url: "",
+        },
+      },
+    },
+  });
 
   const battlePrompts = [
     {
       generatePrompt: (actingPlayer, opposingPlayer) => {
-        setCurrentAction(`${actingPlayer} attempts to trick ${opposingPlayer}`)
+        setCurrentAction(`${actingPlayer} attempts to trick ${opposingPlayer}`);
       },
       generateButtonPrompt: (actingPlayer, opposingPlayer) => {
-        return (`${actingPlayer} attempts to trick ${opposingPlayer}`)
+        return `${actingPlayer} attempts to trick ${opposingPlayer}`;
       },
-      resolvePrompt: (actingPlayer, opposingPlayer, actingHero, opposingHero) => {
+      resolvePrompt: (
+        actingPlayer,
+        opposingPlayer,
+        actingHero,
+        opposingHero
+      ) => {
         //This is parsing the int string into number for each hero
-        let opposingHeroInt = Number(opposingHero.data.hero.powerstats.intelligence);
-        let actingHeroInt = Number(actingHero.data.hero.powerstats.intelligence)
+        let opposingHeroInt = Number(
+          opposingHero.data.hero.powerstats.intelligence
+        );
+        let actingHeroInt = Number(
+          actingHero.data.hero.powerstats.intelligence
+        );
         //If the opposing hero matches or has greater int than the acting hero no health change occur
         if (opposingHeroInt >= actingHeroInt) {
-
           //Change Player Turn
-          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
+          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn);
 
           //If the computer attacke set the screen up for the player to select their attack
           if (actingPlayer.name === "Player 2")
-            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
+            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
 
           //Display the counter text
-          setCurrentAction(`${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`)
+          setCurrentAction(
+            `${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
+          );
         } else {
           //Calculate damage done after the prompt
           let dmg = actingHeroInt - opposingHeroInt;
@@ -104,83 +113,109 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
           opposingPlayer.takeDmg(dmg);
 
           //Change Player Turn
-          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
+          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn);
 
-          //If the computer attacke set the screen up for the player to select their attack 
+          //If the computer attacke set the screen up for the player to select their attack
           if (actingPlayer.name === "Player 2")
-            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
+            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
 
           //Set the text to display the dmg done
-          setCurrentAction(`${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`)
+          setCurrentAction(
+            `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+          );
         }
       },
-      type: "int"
+      type: "int",
     },
     {
       generatePrompt: (actingPlayer, opposingPlayer) => {
-        setCurrentAction(`${actingPlayer} is hurling a car at ${opposingPlayer}`)
+        setCurrentAction(
+          `${actingPlayer} is hurling a car at ${opposingPlayer}`
+        );
       },
       generateButtonPrompt: (actingPlayer, opposingPlayer) => {
-        return (`${actingPlayer} is hurling a car at ${opposingPlayer}`)
+        return `${actingPlayer} is hurling a car at ${opposingPlayer}`;
       },
-      resolvePrompt: (actingPlayer, opposingPlayer, actingHero, opposingHero) => {
+      resolvePrompt: (
+        actingPlayer,
+        opposingPlayer,
+        actingHero,
+        opposingHero
+      ) => {
         //Check if damage is done
-        let opposingHeroStr = Number(opposingHero.data.hero.powerstats.strength);
-        let actingHeroStr = Number(actingHero.data.hero.powerstats.strength)
+        let opposingHeroStr = Number(
+          opposingHero.data.hero.powerstats.strength
+        );
+        let actingHeroStr = Number(actingHero.data.hero.powerstats.strength);
         if (opposingHeroStr >= actingHeroStr) {
-          console.log("We DID IT!")
-          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
+          console.log("We DID IT!");
+          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn);
           if (actingPlayer.name === "Player 2")
-            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-          setCurrentAction(`${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`)
-          return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`
+            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
+          setCurrentAction(
+            `${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
+          );
+          return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`;
         } else {
           //Calculate damage done after the prompt
           let dmg = actingHeroStr - opposingHeroStr;
           opposingPlayer.takeDmg(dmg);
-          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
+          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn);
           if (actingPlayer.name === "Player 2")
-            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-          console.log("We DID IT!")
-          setCurrentAction(`${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`)
-          return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
+          console.log("We DID IT!");
+          setCurrentAction(
+            `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+          );
+          return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`;
         }
       },
-      type: "str"
+      type: "str",
     },
     {
       generatePrompt: (actingPlayer, opposingPlayer) => {
-        setCurrentAction(`${actingPlayer} runs circles around ${opposingPlayer}`);
+        setCurrentAction(
+          `${actingPlayer} runs circles around ${opposingPlayer}`
+        );
       },
       generateButtonPrompt: (actingPlayer, opposingPlayer) => {
-        return (`${actingPlayer} runs circles around ${opposingPlayer}`);
+        return `${actingPlayer} runs circles around ${opposingPlayer}`;
       },
-      resolvePrompt: (actingPlayer, opposingPlayer, actingHero, opposingHero) => {
+      resolvePrompt: (
+        actingPlayer,
+        opposingPlayer,
+        actingHero,
+        opposingHero
+      ) => {
         //Check if damage is done
         let opposingHeroSpd = Number(opposingHero.data.hero.powerstats.speed);
-        let actingHeroSpd = Number(actingHero.data.hero.powerstats.speed)
+        let actingHeroSpd = Number(actingHero.data.hero.powerstats.speed);
         if (opposingHeroSpd >= actingHeroSpd) {
-          console.log("We DID IT!")
-          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
+          console.log("We DID IT!");
+          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn);
           if (actingPlayer.name === "Player 2")
-            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-          setCurrentAction(`${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`)
-          return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`
+            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
+          setCurrentAction(
+            `${opposingPlayer.name} successfully countered ${actingPlayer.name}'s action`
+          );
+          return `${opposingPlayer.name} successfully countered ${actingPlayer.name} action`;
         } else {
           //Calculate damage done after the prompt
-          let dmg = actingHeroSpd - opposingHeroSpd
+          let dmg = actingHeroSpd - opposingHeroSpd;
           //After a delay set
           opposingPlayer.takeDmg(dmg);
-          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn)
+          setPlayerTurn((prevPlayerTurn) => !prevPlayerTurn);
           if (actingPlayer.name === "Player 2")
-            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt)
-          setCurrentAction(`${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`)
-          return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+            setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
+          setCurrentAction(
+            `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+          );
+          return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`;
         }
       },
-      type: "spd"
+      type: "spd",
     },
-  ]
+  ];
 
   function getDur(total, heroResult) {
     let dur = heroResult.data.hero.powerstats.durability;
@@ -195,69 +230,81 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
     let p1health = teamOne.reduce(getDur, 0);
     setPlayerOne({
       ...playerOne,
-      health: 100
+      health: 100,
     });
     let p2health = teamTwo.reduce(getDur, 0);
     setPlayerTwo({
       ...playerTwo,
-      health: 100
+      health: 100,
     });
     //Set the computers prompt to a random one
-    setCurrentPrompt(battlePrompts[Math.floor(Math.random() * battlePrompts.length)]);
+    setCurrentPrompt(
+      battlePrompts[Math.floor(Math.random() * battlePrompts.length)]
+    );
     setCurrentEnemyHero(() => {
-      const newHero = { ...teamTwo[Math.floor(Math.random() * teamTwo.length)] }
-      return newHero
+      const newHero = {
+        ...teamTwo[Math.floor(Math.random() * teamTwo.length)],
+      };
+      return newHero;
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
-    currentPrompt.generatePrompt(playerTurn ? playerOne.name : playerTwo.name, playerTurn ? playerTwo.name : playerOne.name)
+    currentPrompt.generatePrompt(
+      playerTurn ? playerOne.name : playerTwo.name,
+      playerTurn ? playerTwo.name : playerOne.name
+    );
     setCurrentEnemyHero(() => {
-      const newHero = { ...teamTwo[Math.floor(Math.random() * teamTwo.length)] }
-      return newHero
+      const newHero = {
+        ...teamTwo[Math.floor(Math.random() * teamTwo.length)],
+      };
+      return newHero;
     });
-  }, [currentPrompt])
+  }, [currentPrompt]);
 
   useEffect(() => {
     if (!playerTurn && playerTwo.health > 0) {
-      console.log("I'm not dead yet")
+      console.log("I'm not dead yet");
       //Set the computers prompt to a random one
-      setCurrentPrompt(battlePrompts[Math.floor(Math.random() * battlePrompts.length)]);
+      setCurrentPrompt(
+        battlePrompts[Math.floor(Math.random() * battlePrompts.length)]
+      );
       setCurrentEnemyHero(() => {
-        const newHero = { ...teamTwo[Math.floor(Math.random() * teamTwo.length)] }
-        return newHero
+        const newHero = {
+          ...teamTwo[Math.floor(Math.random() * teamTwo.length)],
+        };
+        return newHero;
       });
     }
-  }, [playerTurn])
+  }, [playerTurn]);
 
   useEffect(() => {
     //Check for game over on health change
     if (playerOne.health <= 0) {
-      setGameOver(true)
+      setGameOver(true);
     }
     if (playerTwo.health <= 0) {
-      setGameOver(true)
+      setGameOver(true);
       // setCurrentAction('Player Two Lost')
     }
-  }, [playerOne, playerTwo])
+  }, [playerOne, playerTwo]);
 
   //On gameover change
   useEffect(() => {
     if (gameOver && playerOne.health <= 0) {
       updateDraftGameStats({
         variables: {
-          won: false
-        }
-      })
-    }
-    else if (gameOver && playerTwo.health <= 0) {
+          won: false,
+        },
+      });
+    } else if (gameOver && playerTwo.health <= 0) {
       updateDraftGameStats({
         variables: {
-          won: true
-        }
-      })
+          won: true,
+        },
+      });
     }
-  }, [gameOver])
+  }, [gameOver]);
 
   return (
     <div className="h-screen tracking-widest heading">
@@ -265,7 +312,16 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
         {playerTurn ? "Your Turn" : "Enemy Turn"}
       </h1>
       <div className="flex justify-between my-12 mx-9 mb-5">
-        <h1>Player One Health: {playerOne.health}</h1>
+        <div className="flex flex-col items-center">
+          <h1>Player One Health: {playerOne.health}</h1>
+          <div className="health-bar">
+            <div
+              className="health-bar-fill"
+              style={{ width: `${playerOne.health}%` }}
+            ></div>
+          </div>
+        </div>
+
         {currentEnemyHero.loading ? (
           "Loading"
         ) : (
@@ -279,7 +335,15 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
             />
           </div>
         )}
-        <h1>Player Two Health: {playerTwo.health}</h1>
+        <div className="flex flex-col items-center">
+          <h1>Player Two Health: {playerTwo.health}</h1>
+          <div className="health-bar">
+            <div
+              className="health-bar-fill"
+              style={{ width: `${playerTwo.health}%` }}
+            ></div>
+          </div>
+        </div>
       </div>
       {!gameOver ? (
         <div className="flex flex-row justify-center">
@@ -287,7 +351,10 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
             {!selectingPrompt
               ? teamOne.map((heroResult) => {
                   return (
-                    <div className="flex items-center mt-4">
+                    <div
+                      className="flex items-center mt-4"
+                      key={heroResult.data.hero.name}
+                    >
                       <img
                         className="w-8 h-8 bg-gray-200 rounded-full outline outline-offset-2 outline-2 outline-blue-500/50 hover:w-32 hover:h-32"
                         onClick={() =>
@@ -299,6 +366,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
                           )
                         }
                         src={heroResult.data.hero.image.url}
+                        alt={heroResult.data.hero.name}
                       ></img>
                       <span className="ml-2">{heroResult.data.hero.name}</span>
                     </div>
@@ -306,7 +374,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
                 })
               : battlePrompts.map((prompt) => {
                   return (
-                    <div className="flex items-center mt-4">
+                    <div className="flex items-center mt-4" key={prompt.type}>
                       <button
                         onClick={() => {
                           setCurrentPrompt(prompt);

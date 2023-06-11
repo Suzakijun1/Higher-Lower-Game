@@ -1,5 +1,6 @@
 {
   "name": "server",
+  "homepage":".",
   "version": "1.0.0",
   "description": "server for higher lower game",
   "main": "server.js",

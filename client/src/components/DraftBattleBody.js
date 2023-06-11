@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { UPDATE_DRAFT_GAME_STATS } from "../utils/mutations";
+import { Link } from "react-router-dom";
 
 export default function DraftBattleBody({ teamOne, teamTwo }) {
   //This will hold the mutation for the updating the db with the result of the game
@@ -395,7 +396,46 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
           </div>
         </div>
       ) : (
-        <div className="flex text-center">GAME OVER YOU DIED AND YOU SUCK</div>
+        <div className="flex flex-col items-center">
+          <h1 className="text-4xl font-bold mb-8">GAME OVER</h1>
+          {playerOne.health <= 0 ? (
+            <div>
+              <p className="text-2xl mb-4">You died and you suck.</p>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
+                Retry
+              </button>
+              <Link
+                to="/"
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Back to Main Menu
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-2xl">Congratulations, you won!</p>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
+                Retry
+              </button>
+              <Link
+                to="/"
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Back to Main Menu
+              </Link>
+            </div>
+          )}
+        </div>
       )}
     </div>
   );

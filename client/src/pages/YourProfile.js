@@ -39,7 +39,7 @@ export default function YourProfile() {
   }, [data])
   return (
     <div
-      className="bg-cover bg-center"
+      className="bg-cover bg-center tracking-widest w-full"
       style={{
         backgroundImage: `url(${bgImage})`,
       }}

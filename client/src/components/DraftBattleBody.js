@@ -329,7 +329,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
   }, [gameOver]);
 
   return (
-    <div className="h-screen tracking-widest heading">
+    <div className=" tracking-widest heading">
       <h1 className="text-3xl font-bold text-center mt-8">
         {playerTurn ? "Your Turn" : "Enemy Turn"}
       </h1>

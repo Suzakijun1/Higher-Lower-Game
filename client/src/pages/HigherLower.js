@@ -138,11 +138,6 @@ export default function HigherLower() {
       }}
     >
       <div className="container mx-auto px-4">
-        {userHighScoreResult.loading ? (
-          <div>Loading</div>
-        ) : (
-          <div>{highscore}</div>
-        )}
         <h1 className="heading-3 text-3xl font-bold text-center pt-8 tracking-widest">
           Welcome to the Higher Lower Game!
 

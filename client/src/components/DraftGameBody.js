@@ -115,7 +115,7 @@ const DraftBody = (props) => {
   }
 
   return (
-    <div className="flex flex-col items-center mt-10 h-screen">
+    <div className="flex flex-col items-center mt-10 ">
       {/* HEADING */}
       <h1 className="heading text-2xl font-bold mb-4 tracking-widest">
         Pick One

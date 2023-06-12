@@ -1,6 +1,6 @@
 ## Superhero Showdown
 
-Demo link: [link](https://sleepy-shore-92951.herokuapp.com/)
+Demo link: [link](https://hero-showdown.herokuapp.com/)
 
 ## Table of Contents
 

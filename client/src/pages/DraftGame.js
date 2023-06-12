@@ -49,7 +49,7 @@ export default function Home() {
   return (
 
     <div
-      className="bg-cover bg-center h-screen"
+      className="bg-cover bg- h-max pb-10"
       style={{
         backgroundImage: `url(${bgImage})`,
       }}

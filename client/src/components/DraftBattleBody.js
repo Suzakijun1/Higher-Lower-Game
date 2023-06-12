@@ -122,7 +122,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
 
           //Set the text to display the dmg done
           setCurrentAction(
-            `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+            `${actingHero.data.hero.name} has dealt ${dmg} to ${opposingHero.data.hero.name}`
           );
         }
       },
@@ -166,9 +166,8 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
           console.log("We DID IT!");
           setCurrentAction(
-            `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+            `${actingHero.data.hero.name} has dealt ${dmg} to ${opposingHero.data.hero.name}`
           );
-          return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`;
         }
       },
       type: "str",
@@ -209,9 +208,8 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
           if (actingPlayer.name === "Player 2")
             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
           setCurrentAction(
-            `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`
+            `${actingHero.data.hero.name} has dealt ${dmg} to ${opposingHero.data.hero.name}`
           );
-          return `${actingPlayer.name} has dealt ${dmg} to ${opposingPlayer.name}`;
         }
       },
       type: "spd",

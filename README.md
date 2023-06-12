@@ -1,4 +1,6 @@
-## Higher-Lower-Game
+## Superhero Showdown
+
+Demo link: [link](https://sleepy-shore-92951.herokuapp.com/)
 
 ## Table of Contents
 
@@ -8,6 +10,7 @@
 - [Technologies-Used](#technologies-used)
 - [Screenshot](#screenshot)
 - [Contributing](#contributors)
+- [Credit](#credit)
 
 ## Description
 
@@ -72,3 +75,11 @@ Lower Higher High Score: Highest score achieved in the "Lower Higher" game mode.
 - Luis Robles ![Link](https://github.com/robles1999)
 - Trent Stanley ![Link](https://github.com/trentstanley92)
 - Dylan Yong ![Link](https://github.com/Suzakijun1)
+
+## Credit
+
+Soundtrack:
+Epic Cinematic Trailer | ELITE by Alex-Productions | https://onsound.eu/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY 3.0
+https://creativecommons.org/licenses/by/3.0/

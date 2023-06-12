@@ -60,7 +60,7 @@ function Signup(props) {
                 name="username"
                 type="text"
                 id="username"
-                className="tracking-widest mb-4 pl-6 border border-gray-300 px-3 py-2 rounded w-full"
+                className="tracking-widest mb-4 pl-6 border font-sans text-black border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
               </div>
@@ -73,7 +73,7 @@ function Signup(props) {
                 name="email"
                 type="email"
                 id="email"
-                className="tracking-widest pl-6 border border-gray-300 px-3 py-2 rounded w-full"
+                className="tracking-widest pl-6 border font-sans text-black border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
               </div>
@@ -86,7 +86,7 @@ function Signup(props) {
                 name="password"
                 type="password"
                 id="pwd"
-                className="tracking-widest pl-6 border border-gray-300 px-3 py-2 rounded w-full"
+                className="tracking-widest pl-6 border font-sans text-black border-gray-300 px-3 py-2 rounded w-full"
                 onChange={handleChange}
               />
               </div>

@@ -66,7 +66,7 @@ function Login() {
                   name="username"
                   type="username"
                   id="username"
-                  className="tracking-widest pl-6 border border-gray-300 px-3 py-2 rounded w-full"
+                  className="tracking-widest font-sans pl-6 border border-gray-300 text-black px-3 py-2 rounded w-full"
                   onChange={handleChange}
                 />
               </div>
@@ -82,7 +82,7 @@ function Login() {
                   name="password"
                   type="password"
                   id="password"
-                  className=" tracking-widest pl-6 border border-gray-300 px-3 py-2 rounded w-full"
+                  className=" tracking-widest pl-6 border border-gray-300 font-sans text-black px-3 py-2 rounded w-full"
                   onChange={handleChange}
                 />
               </div>
@@ -91,7 +91,7 @@ function Login() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                className="bg-blue-500  text-white py-2 px-4 rounded hover:bg-blue-600"
               >
                 Login
               </button>

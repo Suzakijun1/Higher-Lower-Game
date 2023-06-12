@@ -122,7 +122,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
 
           //Set the text to display the dmg done
           setCurrentAction(
-            `${actingHero.data.hero.name} has dealt ${dmg} to ${opposingHero.data.hero.name}`
+            `(${actingPlayer.name}) ${actingHero.data.hero.name} has dealt ${dmg} to (${opposingPlayer.name}) ${opposingHero.data.hero.name}`
           );
         }
       },
@@ -166,7 +166,7 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
           console.log("We DID IT!");
           setCurrentAction(
-            `${actingHero.data.hero.name} has dealt ${dmg} to ${opposingHero.data.hero.name}`
+            `(${actingPlayer.name}) ${actingHero.data.hero.name} has dealt ${dmg} to (${opposingPlayer.name}) ${opposingHero.data.hero.name}`
           );
         }
       },
@@ -208,8 +208,12 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
           if (actingPlayer.name === "Player 2")
             setSelectingPrompt((prevSelectingPrompt) => !prevSelectingPrompt);
           setCurrentAction(
-            `${actingHero.data.hero.name} has dealt ${dmg} to ${opposingHero.data.hero.name}`
+            `(${actingPlayer.name}) ${actingHero.data.hero.name} has dealt ${dmg} to (${opposingPlayer.name}) ${opposingHero.data.hero.name}`
           );
+        }
+        if(actingPlayer.name === "Player 1"){
+          console.log("We stallin!");
+          sleep(1000)
         }
       },
       type: "spd",
@@ -222,6 +226,13 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
       return total;
     }
     return total + Number(dur);
+  }
+  function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
   }
 
   useEffect(() => {
@@ -291,12 +302,24 @@ export default function DraftBattleBody({ teamOne, teamTwo }) {
   //On gameover change
   useEffect(() => {
     if (gameOver && playerOne.health <= 0) {
+      setPlayerOne((prevPlayerOne) => {
+        return {
+          ...prevPlayerOne,
+          health: 0,
+        }
+      })
       updateDraftGameStats({
         variables: {
           won: false,
         },
       });
     } else if (gameOver && playerTwo.health <= 0) {
+      setPlayerTwo((prevPlayerTwo) => {
+        return {
+          ...prevPlayerTwo,
+          health: 0,
+        }
+      })
       updateDraftGameStats({
         variables: {
           won: true,

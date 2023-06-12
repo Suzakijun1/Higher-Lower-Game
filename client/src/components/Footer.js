@@ -18,7 +18,7 @@ const linkedIn = (
 
 export default function Footer() {
   return (
-    <div className=" bottom-0 left-0 right-0 bg-secondary py-4 bg-gray-800">
+    <div className=" bg-secondary py-4 bg-gray-800">
       <div className="container mx-auto">
         <ul className="flex justify-center">
           {/* <li className="p-3">
